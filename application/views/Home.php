@@ -23,10 +23,17 @@
                             <div class="card-body">
                                 <form action id="InsertOTForm">
                                     <div class="row py-3">
-                                        <div class="col title-purple">
-                                            <h4>
-                                                <b>แบบฟอร์มขออนุมัติปฏิบัติงานล่วงเวลา</b>
-                                            </h4>
+                                        <div class="col text-center">
+                                            <h1>
+                                                <b class="d-flex justify-content-center mx-auto text-center">
+                                                    <div class="title-blue">
+                                                        แบบฟอร์ม
+                                                    </div>
+                                                    <div class="title-dark-blue">
+                                                        ขออนุมัติปฏิบัติงานล่วงเวลา
+                                                    </div>
+                                                </b>
+                                            </h1>
                                         </div>
                                     </div>
                                     <div class="row mt-3">
