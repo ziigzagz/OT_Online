@@ -44,7 +44,7 @@ class OTRequestModel extends CI_Model
 		$data['data'] = $res;
 		$data["result"] = "success";
 		return $data;
-	
+
 	}
 	public function GetOTRequestWaitGroup()
 	{
@@ -74,7 +74,7 @@ class OTRequestModel extends CI_Model
 		$res = $query->result();
 		$data['data'] = $res;
 		$data["result"] = "success";
-		return $data ;
+		return $data;
 	}
 	public function GetOTRequestApprovedGroup()
 	{
@@ -239,14 +239,14 @@ class OTRequestModel extends CI_Model
 		$sql = "update tb_ot_request set approved_status = '1' where id = '$ID'";
 		$query = $this->db->query($sql);
 		if ($this->db->trans_status() === FALSE) {
-		    $this->db->trans_rollback();
-			$data["result"] = "fail" ;
+			$this->db->trans_rollback();
+			$data["result"] = "fail";
 		} else {
-		    $this->db->trans_commit();
-			$data["result"] = "success" ;
+			$this->db->trans_commit();
+			$data["result"] = "success";
 		}
 		return $data;
-	
+
 	}
 	public function RejectByID()
 	{
@@ -255,40 +255,42 @@ class OTRequestModel extends CI_Model
 		$sql = "update tb_ot_request set approved_status = '2' where id = '$ID'";
 		$query = $this->db->query($sql);
 		if ($this->db->trans_status() === FALSE) {
-		    $this->db->trans_rollback();
-			$data["result"] = "fail" ;
+			$this->db->trans_rollback();
+			$data["result"] = "fail";
 		} else {
-		    $this->db->trans_commit();
-			$data["result"] = "success" ;
+			$this->db->trans_commit();
+			$data["result"] = "success";
 		}
 		return $data;
 	}
 
-	public function ApprovedAllKey(){
+	public function ApprovedAllKey()
+	{
 		$this->db->trans_begin();
 		$request_key = $_REQUEST['request_key'];
 		$sql = "update tb_ot_request set approved_status = '1' where request_key = '$request_key'";
 		$query = $this->db->query($sql);
 		if ($this->db->trans_status() === FALSE) {
 			$this->db->trans_rollback();
-			$data["result"] = "fail" ;
+			$data["result"] = "fail";
 		} else {
 			$this->db->trans_commit();
-			$data["result"] = "success" ;
+			$data["result"] = "success";
 		}
 		return $data;
 	}
-	public function RejectdAllKey(){
+	public function RejectdAllKey()
+	{
 		$this->db->trans_begin();
 		$request_key = $_REQUEST['request_key'];
 		$sql = "update tb_ot_request set approved_status = '2' where request_key = '$request_key'";
 		$query = $this->db->query($sql);
 		if ($this->db->trans_status() === FALSE) {
 			$this->db->trans_rollback();
-			$data["result"] = "fail" ;
+			$data["result"] = "fail";
 		} else {
 			$this->db->trans_commit();
-			$data["result"] = "success" ;
+			$data["result"] = "success";
 		}
 		return $data;
 	}
@@ -345,7 +347,27 @@ class OTRequestModel extends CI_Model
 				'response_code' => 200,
 				'status' => "success",
 			);
+			$config = array(
+				'protocol' => 'smtp',
+				'smtp_host' => 'smtp.gmail.com',
+				'smtp_port' => 587,
+				'smtp_user' => 'iffan.h@ku.th',
+				'smtp_pass' => 'Puifai278*',
+				'smtp_crypto' => 'tls',
+				'mailtype' => 'html',
+				'charset' => 'utf-8',
+				'newline' => "\r\n",
+			);
+
+			$this->load->library('email');
+			$this->email->initialize($config);
+			$this->email->from('iffan.k@ku.th', 'รายการขออนุมัติ OT');
+			$this->email->to('iffan.hym@gmail.com');
+			$this->email->subject('Subject of the Email');
+			$this->email->message('Email content goes here.');
+			$this->email->send();
 		}
+
 		return $res;
 	}
 }

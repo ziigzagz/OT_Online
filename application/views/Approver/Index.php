@@ -52,7 +52,7 @@
 								<hr>
 								<div class="row">
 									<div class="col ">
-										<div class="bg-warning bg-opacity-50 rounded-2 p-3">
+										<div class="bg-warning bg-opacity-50 rounded-2 p-3 text-dark">
 											รายการรออนุมัติ
 										</div>
 									</div>
@@ -85,7 +85,7 @@
 
 								<div class="row">
 									<div class="col ">
-										<div class="bg-success bg-opacity-50 rounded-2 p-3">
+										<div class="bg-success bg-opacity-50 rounded-2 p-3 text-dark">
 											รายการอนุมัติแล้ว
 										</div>
 									</div>
@@ -118,7 +118,7 @@
 
 								<div class="row">
 									<div class="col ">
-										<div class="bg-danger bg-opacity-50 rounded-2 p-3">
+										<div class="bg-danger bg-opacity-50 rounded-2 p-3 text-dark">
 											รายการไม่อนุมัติ
 										</div>
 									</div>
