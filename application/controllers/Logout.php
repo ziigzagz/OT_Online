@@ -13,7 +13,7 @@ class Logout extends CI_Controller
     public function index()
     {
         session_destroy();
-        header("Refresh:0; url=./login");
+        header("Refresh:0; url=./Login");
     }
   
 }

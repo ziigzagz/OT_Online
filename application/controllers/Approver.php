@@ -19,7 +19,6 @@ class Approver extends CI_Controller
 	public function index()
 	{
 		$this->load->view('css');
-		$this->load->view('js');
 		$this->load->view('Approver/Index.php');
 	}
 

@@ -38,23 +38,208 @@
 										<h3>
 											<b class="d-flex justify-content-center mx-auto flex-column">
 												<div class="title-dark-blue">
-													สวัสดี, Username
+													สวัสดี,
+													<?php echo $_SESSION['username'] ?>
+													<a href="<?php echo base_url() ?>Logout">
+														<button class="btn btn-danger ms-3">ออกจากระบบ</button>
+													</a>
+
 												</div>
 											</b>
 										</h3>
 									</div>
 								</div>
+								<hr>
+								<div class="row">
+									<div class="col ">
+										<div class="bg-warning bg-opacity-50 rounded-2 p-3">
+											รายการรออนุมัติ
+										</div>
+									</div>
+								</div>
+								<div class="row mt-3">
+									<div class="col">
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered text-center"
+												id="tb_wait_approved">
+												<thead>
+													<tr>
+														<th class="text-center">หน้าที่รับผิดชอบ</th>
+														<th class="text-center">วันที่ทำ OT</th>
+														<th class="text-center">เวลาทำ OT</th>
+														<th class="text-center">รายละเอียด</th>
+														<th class="text-center">MachineName</th>
+														<th class="text-center">เวลาบันทึก</th>
+														<th class="text-center">#</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card mt-3">
+							<div class="card-body">
+
+								<div class="row">
+									<div class="col ">
+										<div class="bg-success bg-opacity-50 rounded-2 p-3">
+											รายการอนุมัติแล้ว
+										</div>
+									</div>
+								</div>
+								<div class="row mt-3">
+									<div class="col">
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered text-center"
+												id="tb_approved">
+												<thead>
+													<tr>
+														<th class="text-center">หน้าที่รับผิดชอบ</th>
+														<th class="text-center">วันที่ทำ OT</th>
+														<th class="text-center">เวลาทำ OT</th>
+														<th class="text-center">รายละเอียด</th>
+														<th class="text-center">MachineName</th>
+														<th class="text-center">เวลาบันทึก</th>
+														<th class="text-center">#</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card mt-3">
+							<div class="card-body">
+
+								<div class="row">
+									<div class="col ">
+										<div class="bg-danger bg-opacity-50 rounded-2 p-3">
+											รายการไม่อนุมัติ
+										</div>
+									</div>
+								</div>
+								<div class="row mt-3">
+									<div class="col">
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered text-center"
+												id="tb_rejected">
+												<thead>
+													<tr>
+														<th class="text-center">หน้าที่รับผิดชอบ</th>
+														<th class="text-center">วันที่ทำ OT</th>
+														<th class="text-center">เวลาทำ OT</th>
+														<th class="text-center">รายละเอียด</th>
+														<th class="text-center">MachineName</th>
+														<th class="text-center">เวลาบันทึก</th>
+														<th class="text-center">#</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="myModalInfo" tabindex="-1" role="dialog" aria-labelledby="myModalInfo"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="row">
+									<div class="col text-center">
+										<button class="btn btn-success"
+											onclick="ApprovedAllKey()">อนุมัติทั้งหมด</button>
+										<button class="btn btn-danger"
+											onclick="RejectdAllKey()">ไม่อนุมัติทั้งหมด</button>
+									</div>
+								</div>
 								<div class="row">
 									<div class="col">
-										<div class="bg-success p-2 text-dark bg-opacity-25 rounded-2">
-											<div class="row">
-												<div class="col text-start ms-3">
-													รายการรออนุมัติ
-												</div>
-												<div class="col text-end">
-													<button class="btn btn-info mx-end">ดูทั้งหมด</button>
-												</div>
-											</div>
+										<input type="text" id="request_key" hidden>
+									</div>
+								</div>
+								<div class="row mt-3">
+									<div class="col text-center">
+										<!-- table info -->
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered text-center" id="tb_info">
+												<thead>
+													<tr>
+														<th class="text-center">ชื่อ</th>
+														<th class="text-center">สายรถ</th>
+														<th class="text-center">เวลาบันทึก</th>
+														<th class="text-center">#</th>
+													</tr>
+												</thead>
+												<tbody id="tb_info_body"></tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="myModalApproved" tabindex="-1" role="dialog"
+					aria-labelledby="myModalApproved" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="row mt-3">
+									<div class="col text-center">
+										<!-- table info -->
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered text-center"
+												id="tb_approved">
+												<thead>
+													<tr>
+														<th class="text-center">ชื่อ</th>
+														<th class="text-center">สายรถ</th>
+														<th class="text-center">เวลาบันทึก</th>
+
+													</tr>
+												</thead>
+												<tbody id="tb_approved_body"></tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="myModalRejected" tabindex="-1" role="dialog"
+					aria-labelledby="myModalRejected" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="row mt-3">
+									<div class="col text-center">
+										<!-- table info -->
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered text-center"
+												id="tb_rejected">
+												<thead>
+													<tr>
+														<th class="text-center">ชื่อ</th>
+														<th class="text-center">สายรถ</th>
+														<th class="text-center">เวลาบันทึก</th>
+
+													</tr>
+												</thead>
+												<tbody id="tb_rejected_body"></tbody>
+											</table>
 										</div>
 									</div>
 								</div>
@@ -64,9 +249,503 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- MDB -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+		<?php include_once(APPPATH . 'views/js.php'); ?>
+		<!-- MDB -->
+		<script type="text/javascript"
+			src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+		<script>
+			const myModalInfo = new mdb.Modal(document.getElementById('myModalInfo'))
+			const myModalApproved = new mdb.Modal(document.getElementById('myModalApproved'))
+			const myModalRejected = new mdb.Modal(document.getElementById('myModalRejected'))
+			// เซ็ต DataTable
+			var table_wait_approved = $('#tb_wait_approved').DataTable({
+				processing: true,
+				ajax: {
+					'url': host + 'OTRequest/GetOTRequestWaitGroup',
+					'type': 'GET',
+				},
+				columns: [{
+					data: 'roles'
+				},
+				{
+					data: null,
+					render: function (data, type, row) {
+						return `${row.ot_date}`;
+						// return `<span class="badge badge-warning text-dark text-uppercase">ยังไม่ลงข้อมูล</span>`;
+					},
+				},
+				{
+					data: null,
+					render: function (data, type, row) {
+						return `${row.ot_starttime} - ${row.ot_endtime}`;
+						// return `<span class="badge badge-warning text-dark text-uppercase">ยังไม่ลงข้อมูล</span>`;
+					},
+				},
+				{
+					data: "work_detail",
+				},
+				{
+					data: "machine_name",
+				},
+				{
+					data: "createdate",
+				},
+				{
+					targets: -1,
+					data: null,
+					defaultContent: `<button class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>`,
+				}],
+			});
+			var table_approved = $('#tb_approved').DataTable({
+				processing: true,
+
+				ajax: {
+					'url': host + 'OTRequest/GetOTRequestApprovedGroup',
+					'type': 'GET',
+				},
+				columns: [{
+					data: 'roles'
+				},
+				{
+					data: null,
+					render: function (data, type, row) {
+						return `${row.ot_date}`;
+						// return `<span class="badge badge-warning text-dark text-uppercase">ยังไม่ลงข้อมูล</span>`;
+					},
+				},
+				{
+					data: null,
+					render: function (data, type, row) {
+						return `${row.ot_starttime} - ${row.ot_endtime}`;
+						// return `<span class="badge badge-warning text-dark text-uppercase">ยังไม่ลงข้อมูล</span>`;
+					},
+				},
+				{
+					data: "work_detail",
+				},
+				{
+					data: "machine_name",
+				},
+				{
+					data: "createdate",
+				},
+				{
+					targets: -1,
+					data: null,
+					defaultContent: `<button class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>`,
+				}],
+			});
+			var table_rejected = $('#tb_rejected').DataTable({
+				processing: true,
+
+				ajax: {
+					'url': host + 'OTRequest/GetOTRequestRejectedGroup',
+					'type': 'GET',
+				},
+				columns: [{
+					data: 'roles'
+				},
+				{
+					data: null,
+					render: function (data, type, row) {
+						return `${row.ot_date}`;
+						// return `<span class="badge badge-warning text-dark text-uppercase">ยังไม่ลงข้อมูล</span>`;
+					},
+				},
+				{
+					data: null,
+					render: function (data, type, row) {
+						return `${row.ot_starttime} - ${row.ot_endtime}`;
+						// return `<span class="badge badge-warning text-dark text-uppercase">ยังไม่ลงข้อมูล</span>`;
+					},
+				},
+				{
+					data: "work_detail",
+				},
+				{
+					data: "machine_name",
+				},
+				{
+					data: "createdate",
+				},
+				{
+					targets: -1,
+					data: null,
+					defaultContent: `<button class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>`,
+				}],
+			});
+			// ปุ่มดูข้อมูล
+			$('#tb_wait_approved tbody').on('click', 'button.btn-info', function () {
+				var row = table_wait_approved.row($(this).parents('tr')).data();
+				console.log('View', row)
+				let data = {
+					"request_key": row.request_key
+				}
+				console.log(data)
+				$.ajax(host + 'OTRequest/GetOTRequestWaitGroupByKey', {
+					data: data,
+					contentType: "contentType/json",
+					success: function (response) {
+						// console.log(response)
+						// 	[{
+						//         "id": "23",
+						//         "request_key": "dd407a0c-49c9-11ee-95af-18c04df8b83d",
+						//         "employee_id": "570088",
+						//         "employees_name": "นายเอกชัย ปินะกาพัง",
+						//         "roles": "Repair/BM",
+						//         "ot_starttime": "02:31:00",
+						//         "ot_endtime": "02:32:00",
+						//         "ot_date": "2023-09-20",
+						//         "cars_text": "สะพานสี่ 1",
+						//         "work_detail": "wdw",
+						//         "machine_name": "dwdwd",
+						//         "createdate": "2023-09-03 02:49:44",
+						//         "sects": "MC"
+						//     }
+						//    ]
+						let html = '';
+
+						response.data.forEach(element => {
+							console.log(element)
+							html += `<tr>
+						<td>${element.employees_name}</td>
+						<td>${element.cars_text}</td>
+						<td>${element.createdate}</td>
+						<td><button class="btn btn-success" onclick="ApprovedByID(${element.id})"><i class="fa-solid fa-circle-check"></i></button>
+						<button class="btn btn-danger" onclick="RejectByID(${element.id})"><i class="fa-solid fa-circle-xmark"></i></button></td>
+						</tr>`
+						});
+						$('#tb_info_body').html(html)
+						$('#request_key').val(row.request_key)
+						myModalInfo.show()
+					},
+					error: function (res) {
+						console.log("error", res)
+					},
+					complete: function (res) {
+						console.log("complete", res)
+					}
+				});
+
+			});
+			$('#tb_approved tbody').on('click', 'button.btn-info', function () {
+				var row = table_approved.row($(this).parents('tr')).data();
+				console.log('View', row)
+				let data = {
+					"request_key": row.request_key
+				}
+				console.log(data)
+				$.ajax(host + 'OTRequest/GetOTRequestApprovedGroupByKey', {
+					data: data,
+					contentType: "contentType/json",
+					success: function (response) {
+						console.log(response)
+						let html = '';
+
+						response.data.forEach(element => {
+							console.log(element)
+							html += `<tr>
+						<td>${element.employees_name}</td>
+						<td>${element.cars_text}</td>
+						<td>${element.createdate}</td>
+					
+						</tr>`
+						});
+						$('#tb_approved_body').html(html)
+						$('#request_key').val(row.request_key)
+						myModalApproved.show()
+					},
+					error: function (res) {
+						console.log("error", res)
+					},
+					complete: function (res) {
+						console.log("complete", res)
+					}
+				});
+			});
+			$('#tb_rejected tbody').on('click', 'button.btn-info', function () {
+				var row = table_rejected.row($(this).parents('tr')).data();
+				console.log('View', row)
+				let data = {
+					"request_key": row.request_key
+				}
+				console.log(data)
+				$.ajax(host + 'OTRequest/GetOTRequestRejectedGroupByKey', {
+					data: data,
+					contentType: "contentType/json",
+					success: function (response) {
+						console.log(response)
+						let html = '';
+
+						response.data.forEach(element => {
+							console.log(element)
+							html += `<tr>
+						<td>${element.employees_name}</td>
+						<td>${element.cars_text}</td>
+						<td>${element.createdate}</td>
+				
+						</tr>`
+						});
+						$('#tb_rejected_body').html(html)
+						$('#request_key').val(row.request_key)
+						myModalRejected.show()
+					},
+					error: function (res) {
+						console.log("error", res)
+					},
+					complete: function (res) {
+						console.log("complete", res)
+					}
+				});
+			});
+
+			// ปุ่มลบข้อมูล
+			$('#tb_wait_approved tbody ').on('click', 'button.btn-danger', function () {
+				var row = table_wait_approved.row($(this).parents('tr')).data();
+				Swal.fire({
+					title: `ต้องการลบข้อมูล?`,
+					icon: 'warning',
+					html: `เลขบัตรประชาชน : ${row.MemberID}<br>
+				ชื่อ : ${row.Fname} ${row.Lname}<br>
+				`,
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					confirmButtonText: 'ยืนยัน',
+					cancelButtonColor: '#d33',
+					cancelButtonText: 'ยกเลิก',
+				}).then((result) => {
+					if (result.isConfirmed) {
+						let data = {
+							"id": row.id
+						}
+						$.ajax(host + 'api/_Member/delete_member', {
+							data: data,
+							headers: {
+								"token": token
+							},
+							contentType: "contentType/json",
+							timeout: 3000,
+							success: function (response) {
+								if (response.result == "success") {
+									table_wait_approved.ajax.reload();
+									table_approved.ajax.reload();
+									table_rejected.ajax.reload();
+
+								}
+							},
+							error: function (res) {
+								console.log("error", res)
+							},
+							complete: function (res) {
+								console.log("complete", res)
+							}
+						});
+					}
+				})
+			});
+			// ApprovedByID
+			function ApprovedByID(id) {
+				// swal confirm
+				Swal.fire({
+					title: `ต้องการอนุมัติ?`,
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					confirmButtonText: 'ยืนยัน',
+					cancelButtonColor: '#d33',
+					cancelButtonText: 'ยกเลิก',
+				}).then((result) => {
+					if (result.isConfirmed) {
+						let data = {
+							"id": id
+						}
+						$.ajax(host + 'OTRequest/ApprovedByID', {
+							data: data,
+							contentType: "contentType/json",
+							success: function (response) {
+								console.log(response)
+								if (response.result == "success") {
+									// remove row id =id
+									$(`#tb_info_body tr td button.btn-success`).each(function () {
+										if ($(this).attr('onclick') == `ApprovedByID(${id})`) {
+											$(this).parents('tr').remove()
+										}
+									})
+									// if empty body table close modal
+									if ($('#tb_info_body tr').length == 0) {
+										myModalInfo.hide()
+									}
+
+									// table reload
+									table_wait_approved.ajax.reload();
+									table_approved.ajax.reload();
+									table_rejected.ajax.reload();
+
+								}
+							},
+							error: function (res) {
+								console.log("error", res)
+							},
+							complete: function (res) {
+								console.log("complete", res)
+							}
+						});
+					}
+				})
+			}
+			// RejectByID
+			function RejectByID(id) {
+				// swal confirm
+				Swal.fire({
+					title: `ต้องการไม่อนุมัติ?`,
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					confirmButtonText: 'ยืนยัน',
+					cancelButtonColor: '#d33',
+					cancelButtonText: 'ยกเลิก',
+				}).then((result) => {
+					if (result.isConfirmed) {
+						let data = {
+							"id": id
+						}
+						$.ajax(host + 'OTRequest/RejectByID', {
+							data: data,
+							contentType: "contentType/json",
+							success: function (response) {
+								console.log(response)
+								if (response.result == "success") {
+									// remove row id =id
+									$(`#tb_info_body tr td button.btn-danger`).each(function () {
+										if ($(this).attr('onclick') == `RejectByID(${id})`) {
+											$(this).parents('tr').remove()
+										}
+									})
+									// if empty body table close modal
+									if ($('#tb_info_body tr').length == 0) {
+										myModalInfo.hide()
+									}
+
+									// table reload
+									table_wait_approved.ajax.reload();
+									table_approved.ajax.reload();
+									table_rejected.ajax.reload();
+
+								}
+							},
+							error: function (res) {
+								console.log("error", res)
+							},
+							complete: function (res) {
+								console.log("complete", res)
+							}
+						});
+					}
+				})
+			}
+
+			function ApprovedAllKey() {
+				// swal confirm
+				Swal.fire({
+					title: `ต้องการอนุมัติทั้งหมด?`,
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					confirmButtonText: 'ยืนยัน',
+					cancelButtonColor: '#d33',
+					cancelButtonText: 'ยกเลิก',
+				}).then((result) => {
+					if (result.isConfirmed) {
+						let data = {
+							"request_key": $('#request_key').val()
+						}
+						$.ajax(host + 'OTRequest/ApprovedAllKey', {
+							data: data,
+							contentType: "contentType/json",
+							success: function (response) {
+								console.log(response)
+								if (response.result == "success") {
+									// remove row id =id
+									$(`#tb_info_body tr`).each(function () {
+										$(this).remove()
+									})
+									// if empty body table close modal
+									if ($('#tb_info_body tr').length == 0) {
+										myModalInfo.hide()
+									}
+
+									// table reload
+									table_wait_approved.ajax.reload();
+									table_approved.ajax.reload();
+									table_rejected.ajax.reload();
+
+								}
+							},
+							error: function (res) {
+								console.log("error", res)
+							},
+							complete: function (res) {
+								console.log("complete", res)
+							}
+						});
+					}
+				})
+			}
+
+			function RejectdAllKey() {
+				// swal confirm
+				Swal.fire({
+					title: `ต้องการไม่อนุมัติทั้งหมด?`,
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					confirmButtonText: 'ยืนยัน',
+					cancelButtonColor: '#d33',
+					cancelButtonText: 'ยกเลิก',
+				}).then((result) => {
+					if (result.isConfirmed) {
+						let data = {
+							"request_key": $('#request_key').val()
+						}
+						$.ajax(host + 'OTRequest/RejectdAllKey', {
+							data: data,
+							contentType: "contentType/json",
+							success: function (response) {
+								console.log(response)
+								if (response.result == "success") {
+									// remove row id =id
+									$(`#tb_info_body tr`).each(function () {
+										$(this).remove()
+									})
+									// if empty body table close modal
+									if ($('#tb_info_body tr').length == 0) {
+										myModalInfo.hide()
+									}
+
+									// table reload
+									table_wait_approved.ajax.reload();
+									table_approved.ajax.reload();
+									table_rejected.ajax.reload();
+
+								}
+							},
+							error: function (res) {
+								console.log("error", res)
+							},
+							complete: function (res) {
+								console.log("complete", res)
+							}
+						});
+					}
+				})
+			}
+
+			setInterval(function () {
+				table_wait_approved.ajax.reload();
+				table_approved.ajax.reload();
+				table_rejected.ajax.reload();
+			}, 60000);
+		</script>
 </body>
 
 </html>

@@ -94,16 +94,28 @@
 				success: function (response) {
 					console.log(response)
 					if (response.status == 200) {
-						// swal 1500 ms
-						Swal.fire({
-							title: 'เข้าสู่ระบบสำเร็จ',
-							text: response.msg,
-							icon: 'success',
-							showConfirmButton: false,
-							timer: 1500
-						}).then((result) => {
-							window.location.href = "<?= base_url() ?>Approver";
-						});
+						if (response.login == true) {
+							// swal 1500 ms
+							Swal.fire({
+								title: 'เข้าสู่ระบบสำเร็จ',
+								text: response.msg,
+								icon: 'success',
+								showConfirmButton: false,
+								timer: 1500
+							}).then((result) => {
+								window.location.href = "<?= base_url() ?>Approver";
+							});
+							return;
+						}else{
+							Swal.fire({
+								title: 'เข้าสู่ระบบไม่สำเร็จ',
+								text: response.msg,
+								icon: 'error',
+								showConfirmButton: false,
+								timer: 1500
+							})
+						}
+
 					} else {
 						alert(response.message);
 					}

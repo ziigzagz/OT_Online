@@ -4,6 +4,7 @@
 		--danger: #EF6262;
 		--purple: #7533F8;
 		--pink: #e31c79;
+		--green: #14a44d
 	}
 
 	* {
@@ -55,11 +56,28 @@
 		border-radius: 100px;
 		width: 100%;
 	}
-
+	
 	.btn-add-emp:hover {
 		border: 1px solid var(--blue);
 		color: var(--blue);
 	}
+	.btn-success {
+		border: 1px solid var(--green);
+		background-color: var(--green);
+		color: white;
+		border-radius: 100px;
+	}
+	
+	.btn-success:hover {
+		border: 1px solid var(--green);
+		color: var(--green);
+		background-color: white;
+	}
+
+	.btn {
+		border-radius: 100px;
+	}
+
 
 	.btn-clear {
 		background-color: var(--danger);

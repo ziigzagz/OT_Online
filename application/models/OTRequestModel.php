@@ -15,20 +15,282 @@ class OTRequestModel extends CI_Model
 		return $query->result();
 	}
 
-	public function update_data()
+	public function GetOTRequestWait()
 	{
-		// $this->db->trans_begin();
+		$sql = "SELECT 
+		tb_req.`id`,
+		tb_req.`request_key`,
+		tb_req.`employee_id`, 
+		tb_emp.employees_name, 
+		tb_roles.roles,
+		tb_req.ot_starttime,
+		tb_req.ot_endtime,
+		tb_req.ot_date,
+		tb_req.cars_text,
+		tb_req.work_detail,
+		tb_req.machine_name,
+		tb_req.createdate,
+		tb_sect.sects
+		FROM `tb_ot_request` as tb_req
+		inner join `tb_employees` as tb_emp
+		on tb_req.employee_id = tb_emp.employees_id
+		inner join `tb_roles` as tb_roles
+		on tb_req.roles_id = tb_roles.id
+		inner join `tb_sect` as tb_sect
+		on tb_emp.employees_sect =tb_sect.id
+		where tb_req.approved_status = 0";
+		$query = $this->db->query($sql);
+		$res = $query->result();
+		$data['data'] = $res;
+		$data["result"] = "success";
+		return $data;
+	
+	}
+	public function GetOTRequestWaitGroup()
+	{
+		// return $_SESSION;
+		$sect = $_SESSION['sect'];
+		$sql = "SELECT 
+		tb_req.`request_key`,
+		tb_roles.roles,
+		tb_req.ot_starttime,
+		tb_req.ot_endtime,
+		tb_req.ot_date,
+		tb_req.cars_text,
+		tb_req.work_detail,
+		tb_req.machine_name,
+		tb_req.createdate,
+		tb_sect.sects
+		FROM `tb_ot_request` as tb_req
+		inner join `tb_employees` as tb_emp
+		on tb_req.employee_id = tb_emp.employees_id
+		inner join `tb_roles` as tb_roles
+		on tb_req.roles_id = tb_roles.id
+		inner join `tb_sect` as tb_sect
+		on tb_emp.employees_sect = tb_sect.id
+        where tb_req.approved_status = 0 and tb_emp.employees_sect = '$sect'
+        group by tb_req.`request_key`;";
+		$query = $this->db->query($sql);
+		$res = $query->result();
+		$data['data'] = $res;
+		$data["result"] = "success";
+		return $data ;
+	}
+	public function GetOTRequestApprovedGroup()
+	{
+		$sect = $_SESSION['sect'];
+		$sql = "SELECT 
+		tb_req.`request_key`,
+		tb_roles.roles,
+		tb_req.ot_starttime,
+		tb_req.ot_endtime,
+		tb_req.ot_date,
+		tb_req.cars_text,
+		tb_req.work_detail,
+		tb_req.machine_name,
+		tb_req.createdate,
+		tb_sect.sects
+		FROM `tb_ot_request` as tb_req
+		inner join `tb_employees` as tb_emp
+		on tb_req.employee_id = tb_emp.employees_id
+		inner join `tb_roles` as tb_roles
+		on tb_req.roles_id = tb_roles.id
+		inner join `tb_sect` as tb_sect
+		on tb_emp.employees_sect = tb_sect.id
+        where tb_req.approved_status = 1 and tb_emp.employees_sect = '$sect'
+        group by tb_req.`request_key`;";
+		$query = $this->db->query($sql);
+		$res = $query->result();
+		$data['data'] = $res;
+		$data["result"] = "success";
+		return $data;
+	}
+	public function GetOTRequestRejectedGroup()
+	{
+		$sect = $_SESSION['sect'];
+		$sql = "SELECT 
+		tb_req.`request_key`,
+		tb_roles.roles,
+		tb_req.ot_starttime,
+		tb_req.ot_endtime,
+		tb_req.ot_date,
+		tb_req.cars_text,
+		tb_req.work_detail,
+		tb_req.machine_name,
+		tb_req.createdate,
+		tb_sect.sects
+		FROM `tb_ot_request` as tb_req
+		inner join `tb_employees` as tb_emp
+		on tb_req.employee_id = tb_emp.employees_id
+		inner join `tb_roles` as tb_roles
+		on tb_req.roles_id = tb_roles.id
+		inner join `tb_sect` as tb_sect
+		on tb_emp.employees_sect = tb_sect.id
+        where tb_req.approved_status = 2 and tb_emp.employees_sect = '$sect'
+        group by tb_req.`request_key`;";
+		$query = $this->db->query($sql);
+		$res = $query->result();
+		$data['data'] = $res;
+		$data["result"] = "success";
+		return $data;
+	}
 
-		// $ID = '1';
-		// $sql = "update test_db set name = '123' where id = '$ID'";
-		// $query = $this->db->query($sql);
+	public function GetOTRequestWaitGroupByKey()
+	{
+		$request_key = $_REQUEST['request_key'];
+		$sql = "SELECT 
+		tb_req.`id`,
+		tb_req.`request_key`,
+		tb_req.`employee_id`, 
+		tb_emp.employees_name, 
+		tb_roles.roles,
+		tb_req.ot_starttime,
+		tb_req.ot_endtime,
+		tb_req.ot_date,
+		tb_req.cars_text,
+		tb_req.work_detail,
+		tb_req.machine_name,
+		tb_req.createdate,
+		tb_req.approved_status,
+		tb_sect.sects
+		FROM `tb_ot_request` as tb_req
+		inner join `tb_employees` as tb_emp
+		on tb_req.employee_id = tb_emp.employees_id
+		inner join `tb_roles` as tb_roles
+		on tb_req.roles_id = tb_roles.id
+		inner join `tb_sect` as tb_sect
+		on tb_emp.employees_sect =tb_sect.id
+		where tb_req.approved_status = 0 and tb_req.`request_key` = '$request_key'";
+		$query = $this->db->query($sql);
+		$res = $query->result();
+		$data['data'] = $res;
+		$data["result"] = "success";
+		return $data;
+	}
+	public function GetOTRequestApprovedGroupByKey()
+	{
+		$request_key = $_REQUEST['request_key'];
+		$sql = "SELECT 
+		tb_req.`id`,
+		tb_req.`request_key`,
+		tb_req.`employee_id`, 
+		tb_emp.employees_name, 
+		tb_roles.roles,
+		tb_req.ot_starttime,
+		tb_req.ot_endtime,
+		tb_req.ot_date,
+		tb_req.cars_text,
+		tb_req.work_detail,
+		tb_req.machine_name,
+		tb_req.createdate,
+		tb_req.approved_status,
+		tb_sect.sects
+		FROM `tb_ot_request` as tb_req
+		inner join `tb_employees` as tb_emp
+		on tb_req.employee_id = tb_emp.employees_id
+		inner join `tb_roles` as tb_roles
+		on tb_req.roles_id = tb_roles.id
+		inner join `tb_sect` as tb_sect
+		on tb_emp.employees_sect =tb_sect.id
+		where tb_req.approved_status = 1 and tb_req.`request_key` = '$request_key' ";
+		$query = $this->db->query($sql);
+		$res = $query->result();
+		$data['data'] = $res;
+		$data["result"] = "success";
+		return $data;
+	}
+	public function GetOTRequestRejectedGroupByKey()
+	{
+		$request_key = $_REQUEST['request_key'];
+		$sql = "SELECT 
+		tb_req.`id`,
+		tb_req.`request_key`,
+		tb_req.`employee_id`, 
+		tb_emp.employees_name, 
+		tb_roles.roles,
+		tb_req.ot_starttime,
+		tb_req.ot_endtime,
+		tb_req.ot_date,
+		tb_req.cars_text,
+		tb_req.work_detail,
+		tb_req.machine_name,
+		tb_req.createdate,
+		tb_req.approved_status,
+		tb_sect.sects
+		FROM `tb_ot_request` as tb_req
+		inner join `tb_employees` as tb_emp
+		on tb_req.employee_id = tb_emp.employees_id
+		inner join `tb_roles` as tb_roles
+		on tb_req.roles_id = tb_roles.id
+		inner join `tb_sect` as tb_sect
+		on tb_emp.employees_sect =tb_sect.id
+		where tb_req.approved_status = 2 and tb_req.`request_key` = '$request_key'";
+		$query = $this->db->query($sql);
+		$res = $query->result();
+		$data['data'] = $res;
+		$data["result"] = "success";
+		return $data;
+	}
 
-		// if ($this->db->trans_status() === FALSE) {
-		//     $this->db->trans_rollback();
-		// } else {
-		//     $this->db->trans_commit();
-		// }
-		// return $query->result();
+	public function ApprovedByID()
+	{
+		$this->db->trans_begin();
+		$ID = $_REQUEST['id'];
+		$sql = "update tb_ot_request set approved_status = '1' where id = '$ID'";
+		$query = $this->db->query($sql);
+		if ($this->db->trans_status() === FALSE) {
+		    $this->db->trans_rollback();
+			$data["result"] = "fail" ;
+		} else {
+		    $this->db->trans_commit();
+			$data["result"] = "success" ;
+		}
+		return $data;
+	
+	}
+	public function RejectByID()
+	{
+		$this->db->trans_begin();
+		$ID = $_REQUEST['id'];
+		$sql = "update tb_ot_request set approved_status = '2' where id = '$ID'";
+		$query = $this->db->query($sql);
+		if ($this->db->trans_status() === FALSE) {
+		    $this->db->trans_rollback();
+			$data["result"] = "fail" ;
+		} else {
+		    $this->db->trans_commit();
+			$data["result"] = "success" ;
+		}
+		return $data;
+	}
+
+	public function ApprovedAllKey(){
+		$this->db->trans_begin();
+		$request_key = $_REQUEST['request_key'];
+		$sql = "update tb_ot_request set approved_status = '1' where request_key = '$request_key'";
+		$query = $this->db->query($sql);
+		if ($this->db->trans_status() === FALSE) {
+			$this->db->trans_rollback();
+			$data["result"] = "fail" ;
+		} else {
+			$this->db->trans_commit();
+			$data["result"] = "success" ;
+		}
+		return $data;
+	}
+	public function RejectdAllKey(){
+		$this->db->trans_begin();
+		$request_key = $_REQUEST['request_key'];
+		$sql = "update tb_ot_request set approved_status = '2' where request_key = '$request_key'";
+		$query = $this->db->query($sql);
+		if ($this->db->trans_status() === FALSE) {
+			$this->db->trans_rollback();
+			$data["result"] = "fail" ;
+		} else {
+			$this->db->trans_commit();
+			$data["result"] = "success" ;
+		}
+		return $data;
 	}
 
 	public function CreateOTRequest()
@@ -51,16 +313,6 @@ class OTRequestModel extends CI_Model
 		// 		}
 		// 	}
 		// }
-
-		$this->load->library('email');
-
-		$this->email->from('your@example.com', 'Your Name');
-		$this->email->to('iffan.hym@gmail.com');
-
-		$this->email->subject('Email Test');
-		$this->email->message('Testing the email class.');
-
-		$this->email->send();
 
 		$GenID = $this->db->query("SELECT UUID() as id")->row()->id;
 		$Roles = $data['Roles'];

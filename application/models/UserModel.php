@@ -47,7 +47,6 @@ class UserModel extends CI_Model
 			if (sizeof($row) == 0) {
 				return $res;
 			} 
-			$res['data'] = $row[0];
 			// check verify password phph hash
 			$hash_password = $row[0]->password;
 			if (password_verify($password, $hash_password)) {

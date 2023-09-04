@@ -22,11 +22,13 @@ class Login extends CI_Controller
 		$UserModel = new UserModel();
 		$data = $UserModel->checklogin();
 
-		if (sizeof($data)) {
+		if (isset($data['data'])) {
+	
 			$session_data = array(
 				"OT_Online" => true,
 				'id' => $data['data']->id,
 				'username' => $data['data']->username,
+				'sect' => $data['data']->sect,
 			);
 			$this->session->set_tempdata($session_data, NULL, $this->ExpireTime);
 			header("Refresh:0; url=" . base_url());
@@ -35,8 +37,9 @@ class Login extends CI_Controller
 			header("Refresh:0; url=" . base_url() . "login");
 		}
 		$this->output
-			->set_content_type('application/json')
-			->set_output(json_encode($data));
+		->set_content_type('application/json')
+		->set_output(json_encode($data));
+		
 	}
 	public function isLogin()
 	{
