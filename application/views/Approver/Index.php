@@ -30,47 +30,34 @@
 		<div class="content">
 			<div class="container ">
 				<div class="row mt-3">
-					<div class="col-12 col-sm-12 col-md-6 mx-auto">
-						<div class="card text-center">
+					<div class="col mx-auto">
+						<div class="card ">
 							<div class="card-body">
 								<div class="row">
-									<div class="col text-center">
+									<div class="col">
 										<h3>
-											<b class="d-flex justify-content-center mx-auto text-center flex-column">
+											<b class="d-flex justify-content-center mx-auto flex-column">
 												<div class="title-dark-blue">
-													ลงชื่อเข้าใช้
+													สวัสดี, Username
 												</div>
 											</b>
 										</h3>
 									</div>
 								</div>
-								<form id="LoginForm">
-									<!-- login form -->
-									<div class="row mt-3">
-										<div class="col">
-											<div class="form-outline">
-												<input type="text" id="username" class="form-control" />
-												<label class="form-label" for="username">Username</label>
+								<div class="row">
+									<div class="col">
+										<div class="bg-success p-2 text-dark bg-opacity-25 rounded-2">
+											<div class="row">
+												<div class="col text-start ms-3">
+													รายการรออนุมัติ
+												</div>
+												<div class="col text-end">
+													<button class="btn btn-info mx-end">ดูทั้งหมด</button>
+												</div>
 											</div>
 										</div>
 									</div>
-									<div class="row mt-3">
-										<div class="col">
-											<div class="form-outline">
-												<input type="text" id="password" class="form-control" />
-												<label class="form-label" for="password">Password</label>
-											</div>
-										</div>
-									</div>
-									<div class="row mt-3">
-
-										<div class="col">
-											<button type="button" class="btn btn-success btn-rounded"
-												onclick="Login()">Login</button>
-										</div>
-									</div>
-								</form>
-
+								</div>
 							</div>
 						</div>
 					</div>
@@ -80,40 +67,6 @@
 	</div>
 	<!-- MDB -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
-	<script>
-		function Login() {
-			// make ajax post username password 
-			$.ajax({
-				type: "POST",
-				url: "<?= base_url('Login/checklogin') ?>",
-				data: {
-					username: $('#username').val(),
-					password: $('#password').val()
-				},
-				dataType: "JSON",
-				success: function (response) {
-					console.log(response)
-					if (response.status == 200) {
-						// swal 1500 ms
-						Swal.fire({
-							title: 'เข้าสู่ระบบสำเร็จ',
-							text: response.msg,
-							icon: 'success',
-							showConfirmButton: false,
-							timer: 1500
-						}).then((result) => {
-							window.location.href = "<?= base_url() ?>Approver";
-						});
-					} else {
-						alert(response.message);
-					}
-				}
-			});
-
-			return;
-		}
-	</script>
-
 </body>
 
 </html>
