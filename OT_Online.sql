@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2023 at 10:43 PM
+-- Generation Time: Sep 04, 2023 at 05:53 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `ot_online`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_approver`
+--
+
+CREATE TABLE `tb_approver` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `createdate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `sect` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `tb_approver`
+--
+
+INSERT INTO `tb_approver` (`id`, `username`, `password`, `createdate`, `sect`) VALUES
+(1, 'admin_el', '$2y$10$uF1vD2ndW033bZb5MdSzi.ioYJyif5Wdlqt6n/VoiCa0mllqfE0I.', '2023-09-04 05:46:59', 1),
+(2, 'admin_mc', '$2y$10$uF1vD2ndW033bZb5MdSzi.ioYJyif5Wdlqt6n/VoiCa0mllqfE0I.', '2023-09-04 05:46:59', 2);
 
 -- --------------------------------------------------------
 
@@ -159,21 +181,16 @@ CREATE TABLE `tb_ot_request` (
 --
 
 INSERT INTO `tb_ot_request` (`id`, `request_key`, `employee_id`, `roles_id`, `ot_starttime`, `ot_endtime`, `ot_date`, `cars_text`, `approved_status`, `work_detail`, `machine_name`, `createdate`, `approved_by`, `approved_datetime`) VALUES
-(16, 'aaa3d575-49c9-11ee-95af-18c04df8b83d', '500046', 2, '03:20:00', '06:22:00', '0000-00-00', 'สะพานสี่ 1', 0, 'dqww', 'dewdewd', '2023-09-02 19:48:19', 0, NULL),
-(17, 'abb5455a-49c9-11ee-95af-18c04df8b83d', '500046', 2, '03:20:00', '06:22:00', '0000-00-00', 'สะพานสี่ 1', 0, 'dqww', 'dewdewd', '2023-09-02 19:48:21', 0, NULL),
-(18, 'ac57f5de-49c9-11ee-95af-18c04df8b83d', '500046', 2, '03:20:00', '06:22:00', '0000-00-00', 'สะพานสี่ 1', 0, 'dqww', 'dewdewd', '2023-09-02 19:48:22', 0, NULL),
-(23, 'dd407a0c-49c9-11ee-95af-18c04df8b83d', '570088', 2, '02:31:00', '02:32:00', '2023-09-20', 'สะพานสี่ 1', 0, 'wdw', 'dwdwd', '2023-09-02 19:49:44', 0, NULL),
-(24, 'dd407a0c-49c9-11ee-95af-18c04df8b83d', '580058', 2, '02:31:00', '02:32:00', '2023-09-20', 'คลอง2-หนองก้างปลา', 0, 'wdw', 'dwdwd', '2023-09-02 19:49:44', 0, NULL),
-(25, 'de1b4ff4-49c9-11ee-95af-18c04df8b83d', '570088', 2, '02:31:00', '02:32:00', '2023-09-20', 'สะพานสี่ 1', 0, 'wdw', 'dwdwd', '2023-09-02 19:49:45', 0, NULL),
-(26, 'de1b4ff4-49c9-11ee-95af-18c04df8b83d', '580058', 2, '02:31:00', '02:32:00', '2023-09-20', 'คลอง2-หนองก้างปลา', 0, 'wdw', 'dwdwd', '2023-09-02 19:49:45', 0, NULL),
-(27, '18ccaea2-49ca-11ee-95af-18c04df8b83d', '66', 3, '05:50:00', '07:51:00', '2023-09-20', 'สะพานสี่ 9', 0, '1', '2', '2023-09-02 19:51:24', 0, NULL),
-(28, '18ccaea2-49ca-11ee-95af-18c04df8b83d', '66', 3, '05:50:00', '07:51:00', '2023-09-20', 'สะพานสี่ 10', 0, '1', '2', '2023-09-02 19:51:24', 0, NULL),
-(29, '36386ba5-49ca-11ee-95af-18c04df8b83d', '66', 4, '04:54:00', '04:55:00', '2023-09-27', 'สะพานสี่ 9', 0, 'r', 'rr', '2023-09-02 19:52:13', 0, NULL),
-(30, '4fdbd7bf-49ca-11ee-95af-18c04df8b83d', '66', 3, '02:53:00', '02:55:00', '2023-09-21', 'สะพานสี่ 10', 0, 'dwd', 'dwd', '2023-09-02 19:52:56', 0, NULL),
-(31, '69e8fc00-49ca-11ee-95af-18c04df8b83d', '66', 3, '02:53:00', '02:55:00', '2023-09-21', 'สะพานสี่ 10', 0, 'dwd', 'dwd', '2023-09-02 19:53:40', 0, NULL),
+(23, 'dd407a0c-49c9-11ee-95af-18c04df8b83d', '570088', 2, '02:31:00', '02:32:00', '2023-09-20', 'สะพานสี่ 1', 1, 'wdw', 'dwdwd', '2023-09-02 19:49:44', 0, NULL),
+(24, 'dd407a0c-49c9-11ee-95af-18c04df8b83d', '580058', 2, '02:31:00', '02:32:00', '2023-09-20', 'คลอง2-หนองก้างปลา', 2, 'wdw', 'dwdwd', '2023-09-02 19:49:44', 0, NULL),
+(25, 'de1b4ff4-49c9-11ee-95af-18c04df8b83d', '570088', 2, '02:31:00', '02:32:00', '2023-09-20', 'สะพานสี่ 1', 1, 'wdw', 'dwdwd', '2023-09-02 19:49:45', 0, NULL),
+(26, 'de1b4ff4-49c9-11ee-95af-18c04df8b83d', '580058', 2, '02:31:00', '02:32:00', '2023-09-20', 'คลอง2-หนองก้างปลา', 1, 'wdw', 'dwdwd', '2023-09-02 19:49:45', 0, NULL),
 (32, '9424e1b6-49ca-11ee-95af-18c04df8b83d', '66W015', 3, '02:53:00', '02:55:00', '2023-09-21', 'สะพานสี่ 10', 0, 'dwd', 'dwd', '2023-09-02 19:54:51', 0, NULL),
-(33, '76d185a7-49cb-11ee-95af-18c04df8b83d', '470007', 2, '03:01:00', '03:02:00', '2023-09-05', 'รถส่วนตัว', 0, '1', '2', '2023-09-02 20:01:11', 0, NULL),
-(34, 'bad52576-49ce-11ee-95af-18c04df8b83d', '66W015', 3, '02:53:00', '02:55:00', '2023-09-21', 'สะพานสี่ 10', 0, 'dwd', 'dwd', '2023-09-02 20:24:34', 0, NULL);
+(33, '76d185a7-49cb-11ee-95af-18c04df8b83d', '470007', 2, '03:01:00', '03:02:00', '2023-09-05', 'รถส่วนตัว', 2, '1', '2', '2023-09-02 20:01:11', 0, NULL),
+(34, 'bad52576-49ce-11ee-95af-18c04df8b83d', '66W015', 3, '02:53:00', '02:55:00', '2023-09-21', 'สะพานสี่ 10', 0, 'dwd', 'dwd', '2023-09-02 20:24:34', 0, NULL),
+(35, 'd4ff39f0-4b37-11ee-a716-18c04df8b83d', '570088', 3, '22:30:00', '22:32:00', '2023-09-21', 'สะพานสี่ 1', 1, 'ๅ', '/', '2023-09-04 15:29:26', 0, NULL),
+(36, '44b8bd3c-4b38-11ee-a716-18c04df8b83d', '570088', 3, '22:30:00', '22:32:00', '2023-09-21', 'สะพานสี่ 1', 1, 'ๅ', '/', '2023-09-04 15:32:33', 0, NULL),
+(37, '91e885a6-4b38-11ee-a716-18c04df8b83d', '570088', 3, '22:30:00', '22:32:00', '2023-09-21', 'สะพานสี่ 1', 1, 'ๅ', '/', '2023-09-04 15:34:43', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -226,6 +243,12 @@ INSERT INTO `tb_sect` (`id`, `sects`) VALUES
 --
 
 --
+-- Indexes for table `tb_approver`
+--
+ALTER TABLE `tb_approver`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_cars`
 --
 ALTER TABLE `tb_cars`
@@ -261,6 +284,12 @@ ALTER TABLE `tb_sect`
 --
 
 --
+-- AUTO_INCREMENT for table `tb_approver`
+--
+ALTER TABLE `tb_approver`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tb_cars`
 --
 ALTER TABLE `tb_cars`
@@ -276,7 +305,7 @@ ALTER TABLE `tb_employees`
 -- AUTO_INCREMENT for table `tb_ot_request`
 --
 ALTER TABLE `tb_ot_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `tb_roles`
