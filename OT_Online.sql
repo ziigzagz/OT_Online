@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2023 at 05:53 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- Generation Time: Sep 05, 2023 at 01:19 PM
+-- Server version: 5.7.43
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_admin`
+--
+
+CREATE TABLE `tb_admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_admin`
+--
+
+INSERT INTO `tb_admin` (`id`, `username`, `password`, `name`) VALUES
+(1, 'aspirepoi', '$2y$10$mzxgetpHFn2b67b.5Z3mwOrFs8IjIWZuNjjp6kmGlVc5KB7MxAveS', 'อิฟฟาน');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_approver`
 --
 
@@ -31,9 +51,9 @@ CREATE TABLE `tb_approver` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `createdate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `createdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `sect` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_approver`
@@ -52,7 +72,7 @@ INSERT INTO `tb_approver` (`id`, `username`, `password`, `createdate`, `sect`) V
 CREATE TABLE `tb_cars` (
   `id` int(11) NOT NULL,
   `cars` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_cars`
@@ -97,8 +117,8 @@ CREATE TABLE `tb_employees` (
   `employees_name` varchar(255) NOT NULL,
   `employees_sect` int(11) NOT NULL,
   `cars_id` int(11) NOT NULL,
-  `createdate` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `createdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_employees`
@@ -171,26 +191,44 @@ CREATE TABLE `tb_ot_request` (
   `approved_status` int(11) NOT NULL COMMENT '0=รอ/1=อนุมัติ/2=ไม่อนุมัติ',
   `work_detail` text NOT NULL,
   `machine_name` text NOT NULL,
-  `createdate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `createdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `approved_by` int(11) DEFAULT NULL,
   `approved_datetime` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_ot_request`
 --
 
 INSERT INTO `tb_ot_request` (`id`, `request_key`, `employee_id`, `roles_id`, `ot_starttime`, `ot_endtime`, `ot_date`, `cars_text`, `approved_status`, `work_detail`, `machine_name`, `createdate`, `approved_by`, `approved_datetime`) VALUES
-(23, 'dd407a0c-49c9-11ee-95af-18c04df8b83d', '570088', 2, '02:31:00', '02:32:00', '2023-09-20', 'สะพานสี่ 1', 1, 'wdw', 'dwdwd', '2023-09-02 19:49:44', 0, NULL),
-(24, 'dd407a0c-49c9-11ee-95af-18c04df8b83d', '580058', 2, '02:31:00', '02:32:00', '2023-09-20', 'คลอง2-หนองก้างปลา', 2, 'wdw', 'dwdwd', '2023-09-02 19:49:44', 0, NULL),
-(25, 'de1b4ff4-49c9-11ee-95af-18c04df8b83d', '570088', 2, '02:31:00', '02:32:00', '2023-09-20', 'สะพานสี่ 1', 1, 'wdw', 'dwdwd', '2023-09-02 19:49:45', 0, NULL),
-(26, 'de1b4ff4-49c9-11ee-95af-18c04df8b83d', '580058', 2, '02:31:00', '02:32:00', '2023-09-20', 'คลอง2-หนองก้างปลา', 1, 'wdw', 'dwdwd', '2023-09-02 19:49:45', 0, NULL),
+(23, 'dd407a0c-49c9-11ee-95af-18c04df8b83d', '570088', 2, '02:31:00', '02:32:00', '2023-09-20', 'สะพานสี่ 1', 0, 'wdw', 'dwdwd', '2023-09-02 19:49:44', 0, NULL),
+(24, 'dd407a0c-49c9-11ee-95af-18c04df8b83d', '580058', 2, '02:31:00', '02:32:00', '2023-09-20', 'คลอง2-หนองก้างปลา', 0, 'wdw', 'dwdwd', '2023-09-02 19:49:44', 0, NULL),
+(25, 'de1b4ff4-49c9-11ee-95af-18c04df8b83d', '570088', 2, '02:31:00', '02:32:00', '2023-09-20', 'สะพานสี่ 1', 0, 'wdw', 'dwdwd', '2023-09-02 19:49:45', 0, NULL),
+(26, 'de1b4ff4-49c9-11ee-95af-18c04df8b83d', '580058', 2, '02:31:00', '02:32:00', '2023-09-20', 'คลอง2-หนองก้างปลา', 0, 'wdw', 'dwdwd', '2023-09-02 19:49:45', 0, NULL),
 (32, '9424e1b6-49ca-11ee-95af-18c04df8b83d', '66W015', 3, '02:53:00', '02:55:00', '2023-09-21', 'สะพานสี่ 10', 0, 'dwd', 'dwd', '2023-09-02 19:54:51', 0, NULL),
-(33, '76d185a7-49cb-11ee-95af-18c04df8b83d', '470007', 2, '03:01:00', '03:02:00', '2023-09-05', 'รถส่วนตัว', 2, '1', '2', '2023-09-02 20:01:11', 0, NULL),
+(33, '76d185a7-49cb-11ee-95af-18c04df8b83d', '470007', 2, '03:01:00', '03:02:00', '2023-09-05', 'รถส่วนตัว', 1, '1', '2', '2023-09-02 20:01:11', 1, '2023-09-05 12:18:07'),
 (34, 'bad52576-49ce-11ee-95af-18c04df8b83d', '66W015', 3, '02:53:00', '02:55:00', '2023-09-21', 'สะพานสี่ 10', 0, 'dwd', 'dwd', '2023-09-02 20:24:34', 0, NULL),
-(35, 'd4ff39f0-4b37-11ee-a716-18c04df8b83d', '570088', 3, '22:30:00', '22:32:00', '2023-09-21', 'สะพานสี่ 1', 1, 'ๅ', '/', '2023-09-04 15:29:26', 0, NULL),
-(36, '44b8bd3c-4b38-11ee-a716-18c04df8b83d', '570088', 3, '22:30:00', '22:32:00', '2023-09-21', 'สะพานสี่ 1', 1, 'ๅ', '/', '2023-09-04 15:32:33', 0, NULL),
-(37, '91e885a6-4b38-11ee-a716-18c04df8b83d', '570088', 3, '22:30:00', '22:32:00', '2023-09-21', 'สะพานสี่ 1', 1, 'ๅ', '/', '2023-09-04 15:34:43', 0, NULL);
+(35, 'd4ff39f0-4b37-11ee-a716-18c04df8b83d', '570088', 3, '22:30:00', '22:32:00', '2023-09-21', 'สะพานสี่ 1', 0, 'ๅ', '/', '2023-09-04 15:29:26', 0, NULL),
+(36, '44b8bd3c-4b38-11ee-a716-18c04df8b83d', '570088', 3, '22:30:00', '22:32:00', '2023-09-21', 'สะพานสี่ 1', 0, 'ๅ', '/', '2023-09-04 15:32:33', 0, NULL),
+(37, '91e885a6-4b38-11ee-a716-18c04df8b83d', '570088', 3, '22:30:00', '22:32:00', '2023-09-21', 'สะพานสี่ 1', 0, 'ๅ', '/', '2023-09-04 15:34:43', 0, NULL),
+(38, 'fbcf55ce-4baa-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '', '2', '2023-09-05 05:13:43', NULL, NULL),
+(39, '09db606c-4bab-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 05:14:07', NULL, NULL),
+(40, '0be20c83-4bab-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 05:14:10', NULL, NULL),
+(41, '2f4b973e-4bcf-11ee-a96c-6018956fc38d', '480006', 4, '16:34:00', '16:35:00', '2023-09-21', 'มาบเตย-ม.ปาล์มวิลล่า', 2, 'mcmcmcm', 'ferferfefefef', '2023-09-05 09:32:51', 1, '2023-09-05 16:47:23'),
+(42, 'e95d2f37-4bcf-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 09:38:04', NULL, NULL),
+(43, '0e8f5283-4bd0-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 09:39:06', NULL, NULL),
+(44, '3664ae21-4bd0-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 09:40:13', NULL, NULL),
+(45, '40f4ddf5-4bd0-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 09:40:31', NULL, NULL),
+(46, '326de28e-4bd3-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 10:01:35', NULL, NULL),
+(47, '5df213fe-4bd3-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 10:02:48', NULL, NULL),
+(48, 'a67733eb-4bd3-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 10:04:49', NULL, NULL),
+(49, '5256bf89-4bd4-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 10:09:38', NULL, NULL),
+(50, '77611bc8-4bd4-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 10:10:40', NULL, NULL),
+(51, '86c6079e-4bd4-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 10:11:06', NULL, NULL),
+(52, 'f23c0ac0-4bd4-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 10:14:06', NULL, NULL),
+(53, '089bd541-4bd5-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 10:14:43', NULL, NULL),
+(54, '126063c5-4bd5-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 10:15:00', NULL, NULL),
+(55, '368eb48c-4bd5-11ee-a96c-6018956fc38d', '380008', 5, '14:14:00', '14:17:00', '2023-09-14', 'มาบเตย-ม.ปาล์มวิลล่า', 0, '1', '2', '2023-09-05 10:16:01', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -201,7 +239,7 @@ INSERT INTO `tb_ot_request` (`id`, `request_key`, `employee_id`, `roles_id`, `ot
 CREATE TABLE `tb_roles` (
   `id` int(11) NOT NULL,
   `roles` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_roles`
@@ -227,7 +265,7 @@ INSERT INTO `tb_roles` (`id`, `roles`) VALUES
 CREATE TABLE `tb_sect` (
   `id` int(11) NOT NULL,
   `sects` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_sect`
@@ -241,6 +279,12 @@ INSERT INTO `tb_sect` (`id`, `sects`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `tb_admin`
+--
+ALTER TABLE `tb_admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_approver`
@@ -284,6 +328,12 @@ ALTER TABLE `tb_sect`
 --
 
 --
+-- AUTO_INCREMENT for table `tb_admin`
+--
+ALTER TABLE `tb_admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `tb_approver`
 --
 ALTER TABLE `tb_approver`
@@ -305,7 +355,7 @@ ALTER TABLE `tb_employees`
 -- AUTO_INCREMENT for table `tb_ot_request`
 --
 ALTER TABLE `tb_ot_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `tb_roles`

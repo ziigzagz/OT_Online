@@ -271,14 +271,14 @@
 					data: null,
 					render: function (data, type, row) {
 						return `${row.ot_date}`;
-						// return `<span class="badge badge-warning text-dark text-uppercase">ยังไม่ลงข้อมูล</span>`;
+						
 					},
 				},
 				{
 					data: null,
 					render: function (data, type, row) {
 						return `${row.ot_starttime} - ${row.ot_endtime}`;
-						// return `<span class="badge badge-warning text-dark text-uppercase">ยังไม่ลงข้อมูล</span>`;
+					
 					},
 				},
 				{
@@ -310,14 +310,14 @@
 					data: null,
 					render: function (data, type, row) {
 						return `${row.ot_date}`;
-						// return `<span class="badge badge-warning text-dark text-uppercase">ยังไม่ลงข้อมูล</span>`;
+	
 					},
 				},
 				{
 					data: null,
 					render: function (data, type, row) {
 						return `${row.ot_starttime} - ${row.ot_endtime}`;
-						// return `<span class="badge badge-warning text-dark text-uppercase">ยังไม่ลงข้อมูล</span>`;
+						
 					},
 				},
 				{
@@ -349,14 +349,14 @@
 					data: null,
 					render: function (data, type, row) {
 						return `${row.ot_date}`;
-						// return `<span class="badge badge-warning text-dark text-uppercase">ยังไม่ลงข้อมูล</span>`;
+				
 					},
 				},
 				{
 					data: null,
 					render: function (data, type, row) {
 						return `${row.ot_starttime} - ${row.ot_endtime}`;
-						// return `<span class="badge badge-warning text-dark text-uppercase">ยังไม่ลงข้อมูล</span>`;
+						
 					},
 				},
 				{

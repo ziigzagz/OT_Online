@@ -154,3 +154,9 @@
 		font-size: 14px;
 		padding-left: 2%;
 	}
+
+	.span {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	  }

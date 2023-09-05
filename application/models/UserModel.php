@@ -61,7 +61,36 @@ class UserModel extends CI_Model
 		} catch (\Throwable $th) {
 			$res['status'] = 400;
 		}
+	}
+	public function checkloginAdmin()
+	{
+		$res = array();
 
-
+		try {
+			$res['login'] = false;
+			$res['status'] = 200;
+			$res['msg'] = "";
+			$username = $_POST['username'];
+			$password = $_POST['password'];
+			$sql = "SELECT * FROM `tb_admin` WHERE `username` = '$username'";
+			$query = $this->db->query($sql);
+			$row = $query->result();
+			if (sizeof($row) == 0) {
+				return $res;
+			} 
+			// check verify password phph hash
+			$hash_password = $row[0]->password;
+			if (password_verify($password, $hash_password)) {
+				$res['login'] = true;
+				$res['data'] = $row[0];
+				$res['msg'] = "เข้าสู่ระบบสำเร็จ";
+			} else {
+				$res['msg'] = "รหัสผ่านไม่ถูกต้อง";
+			}
+			unset($res['data']->password);
+			return $res;
+		} catch (\Throwable $th) {
+			$res['status'] = 400;
+		}
 	}
 }

@@ -15,7 +15,13 @@ class Login extends CI_Controller
 	{
 		$this->load->view('css');
 		$this->load->view('js');
-		$this->load->view('Login/Login_page.php');
+		$this->load->view('Login/Login_page');
+	}
+	public function Admin()
+	{
+		$this->load->view('css');
+		$this->load->view('js');
+		$this->load->view('Login/Login_page_admin');
 	}
 	public function checklogin()
 	{
@@ -39,7 +45,29 @@ class Login extends CI_Controller
 		$this->output
 		->set_content_type('application/json')
 		->set_output(json_encode($data));
-		
+	}
+	public function checkloginAdmin()
+	{
+		$UserModel = new UserModel();
+		$data = $UserModel->checkloginAdmin();
+
+		if (isset($data['data'])) {
+	
+			$session_data = array(
+				"OT_Online_Admin" => true,
+				'id' => $data['data']->id,
+				'username' => $data['data']->username,
+				'name' => $data['data']->name,
+			);
+			$this->session->set_tempdata($session_data, NULL, $this->ExpireTime);
+			header("Refresh:0; url=" . base_url(). "Admin");
+		} else {
+			$this->session->set_tempdata('status_login', 'fail', 3);
+			header("Refresh:0; url=" . base_url() . "Login/Admin");
+		}
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($data));
 	}
 	public function isLogin()
 	{

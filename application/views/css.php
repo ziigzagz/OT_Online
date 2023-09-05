@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?php echo base_url()?>node_modules\bootstrap\dist\css\bootstrap.min.css">
+<!-- <link rel="stylesheet" href="<?php echo base_url()?>node_modules\bootstrap\dist\css\bootstrap.min.css"> -->
 
 <link rel="stylesheet" href="<?php echo base_url()?>node_modules\datatables.net-buttons-dt\css\buttons.dataTables.css">
 <link rel="stylesheet" href="<?php echo base_url()?>node_modules\datatables.net-dt\css\jquery.dataTables.min.css">

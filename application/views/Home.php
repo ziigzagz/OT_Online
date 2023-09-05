@@ -343,6 +343,7 @@
 				"DateOT": $(`#DateOT`).val().split("/").reverse().join("-"),
 				"WorkDetail": $(`#WorkDetail`).val(),
 				"MachineName": $(`#MachineName`).val(),
+				"Sect"  : $("#Sect").val(),
 				"DataList": DataList,
 			}
 			console.log(data)

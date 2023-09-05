@@ -13,7 +13,10 @@ class OTRequest extends CI_Controller
 	{
 		$OTRequestModel = new OTRequestModel();
 		$data = $OTRequestModel->CreateOTRequest();
-		echo json_encode($data);
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($data));
+		
 	}
 	public function GetOTRequestWait()
 	{
@@ -24,6 +27,14 @@ class OTRequest extends CI_Controller
 		->set_output(json_encode($data));
 	}
 	
+	public function GetOTRequestAllGroup()
+	{
+		$OTRequestModel = new OTRequestModel();
+		$data = $OTRequestModel->GetOTRequestAllGroup();
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($data));
+	}
 	public function GetOTRequestWaitGroup()
 	{
 		$OTRequestModel = new OTRequestModel();
