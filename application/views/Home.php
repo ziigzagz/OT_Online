@@ -23,6 +23,19 @@
 		<div class="content">
 			<div class="container ">
 				<div class="row">
+					<div class="col">
+						<div class="card text-center">
+							<div class="card-body text-uppercase title-dark-blue">
+								<h1>
+									<b>
+										ATC OT Online
+									</b>
+								</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
 					<div class="col-12 col-md-6 col-lg-4 mt-3 text-center">
 						<a href="<?php echo base_url() ?>Requester">
 							<div class="card">
@@ -36,7 +49,7 @@
 						</a>
 					</div>
 					<div class="col-12 col-md-6 col-lg-4 mt-3 text-center">
-					<a href="<?php echo base_url() ?>Approver">
+						<a href="<?php echo base_url() ?>Approver">
 							<div class="card">
 								<div class="card-body">
 									<img src="<?php echo base_url() ?>assets\img\stamp_5442020.png" alt="" height="50">
@@ -48,7 +61,7 @@
 						</a>
 					</div>
 					<div class="col-12 col-md-6 col-lg-4 mt-3 text-center">
-					<a href="<?php echo base_url() ?>Admin">
+						<a href="<?php echo base_url() ?>Admin">
 							<div class="card">
 								<div class="card-body">
 									<img src="<?php echo base_url() ?>assets\img\user_1144709.png" alt="" height="50">
