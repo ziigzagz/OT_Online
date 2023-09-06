@@ -38,10 +38,6 @@
                                                 <div class="title-dark-blue">
                                                     สวัสดี,
                                                     <?php echo $_SESSION['username'] ?>
-                                                    <?php echo APPPATH; ?>
-                                                    <pre>
-                                                        <?php print_r($_SERVER['HTTP_HOST']); ?>
-                                                    </pre>
                                                 </div>
                                             </b>
                                         </h3>

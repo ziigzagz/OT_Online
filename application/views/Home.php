@@ -349,6 +349,7 @@
 			console.log(data)
 			// disable submit btn
 			$(`.btn-create`).attr("disabled", true);
+			myModalLoading.show();
 			$.ajax({
 				url: "<?php echo base_url(); ?>OTRequest/CreateOTRequest",
 				type: "POST",
@@ -390,6 +391,7 @@
 							timer: 1500
 						})
 						$(`.btn-create`).attr("disabled", false);
+						myModalLoading.hide();
 					} else {
 
 					}
