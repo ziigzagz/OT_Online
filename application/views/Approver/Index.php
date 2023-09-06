@@ -39,7 +39,7 @@
 											<b class="d-flex justify-content-center mx-auto flex-column">
 												<div class="title-dark-blue">
 													สวัสดี,
-													<?php echo $_SESSION['username'] ?>
+													คุณ <?php echo $_SESSION['username'] ?>
 													<a href="<?php echo base_url() ?>Logout">
 														<button class="btn btn-danger ms-3">ออกจากระบบ</button>
 													</a>

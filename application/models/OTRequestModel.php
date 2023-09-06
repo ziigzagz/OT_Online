@@ -86,7 +86,7 @@ class OTRequestModel extends CI_Model
 		INNER JOIN `tb_employees` as tb_emp ON tb_req.employee_id = tb_emp.employees_id 
 		INNER JOIN `tb_roles` as tb_roles ON tb_req.roles_id = tb_roles.id 
 		INNER JOIN `tb_sect` as tb_sect ON tb_emp.employees_sect = tb_sect.id 
-		WHERE tb_req.approved_status = 0 AND tb_emp.employees_sect = '$sect' 
+		WHERE tb_req.approved_status = 0 AND tb_emp.employees_sect in ($sect) 
 		GROUP BY tb_req.`request_key`, tb_roles.roles, tb_req.ot_starttime, tb_req.ot_endtime, tb_req.ot_date, tb_req.cars_text, tb_req.work_detail, tb_req.machine_name, tb_req.createdate, tb_sect.sects ;  -- Include tb_roles.roles in GROUP BY";
 		$query = $this->db->query($sql);
 		$res = $query->result();
@@ -116,7 +116,7 @@ class OTRequestModel extends CI_Model
 		on tb_req.roles_id = tb_roles.id
 		inner join `tb_sect` as tb_sect
 		on tb_emp.employees_sect = tb_sect.id
-        where tb_req.approved_status = 1 and tb_emp.employees_sect = '$sect'
+        where tb_req.approved_status = 1 and tb_emp.employees_sect in ($sect)
         group by tb_req.`request_key`,
 		tb_roles.roles,
 		tb_req.ot_starttime,
@@ -154,7 +154,7 @@ class OTRequestModel extends CI_Model
 		on tb_req.roles_id = tb_roles.id
 		inner join `tb_sect` as tb_sect
 		on tb_emp.employees_sect = tb_sect.id
-        where tb_req.approved_status = 2 and tb_emp.employees_sect = '$sect'
+        where tb_req.approved_status = 2 and tb_emp.employees_sect in ($sect)
         group by tb_req.`request_key`,
 		tb_roles.roles,
 		tb_req.ot_starttime,
