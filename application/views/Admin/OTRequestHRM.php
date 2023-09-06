@@ -22,7 +22,7 @@
 		</div>
 		<div class="content">
 			<div class="container-fluid">
-				<?php include_once(APPPATH . "views\Nav\Navbar_admin.php"); ?>
+			<?php include(APPPATH ."views/Nav/Navbar_admin.php"); ?>
 				<div class="row mt-3">
 					<div class="col mx-auto">
 						<div class="card ">

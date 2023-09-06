@@ -48,7 +48,6 @@
                                     </div>
                                 </div>
                                 <hr>
-
                             </div>
                         </div>
 
@@ -95,7 +94,6 @@
 
             </div>
         </div>
-        <?php include_once(base_url() . 'application/views/js.php'); ?>
         <!-- MDB -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
         <script>
