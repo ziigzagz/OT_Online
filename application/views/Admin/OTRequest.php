@@ -253,7 +253,7 @@
 								} else if (row.approved_status == 1) {
 									return `<span class="badge bg-success  text-uppercase">อนุมัติแล้ว โดย ${row.username}</span>`;
 								} else if (row.approved_status == 2) {
-									return `<span class="badge bg-danger  text-uppercase">ไม่อนุมัติ</span>`;
+									return `<span class="badge bg-danger  text-uppercase">ไม่อนุมัติ โดย ${row.username}</span>`;
 								}
 
 
