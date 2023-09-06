@@ -12,6 +12,6 @@ class Requester extends CI_Controller
 	{
 		$this->load->view('css');
 		$this->load->view('js');
-		$this->load->view('Requester\Index');
+		$this->load->view('Requester/Index.php');
 	}
 }
