@@ -47,6 +47,7 @@
                 </div>
             </div>
         </div>
+        <?php include_once(APPPATH . 'views/js.php'); ?>
         <!-- MDB -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
         <script>
