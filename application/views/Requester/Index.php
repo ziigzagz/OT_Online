@@ -523,7 +523,6 @@
 		function removeFromOLList(id) {
 			$(`#li-${id}`).remove();
 			delete DataList[id];
-			console.log(DataList)
 
 		}
 
