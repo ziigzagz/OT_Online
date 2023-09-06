@@ -23,7 +23,7 @@
             </svg>
         </div>
         <div class="content">
-            <?php include_once(APPPATH. "views\Nav\Navbar_admin.php");?>
+            <?php include_once(base_url() . "application\views\Nav\Navbar_admin.php");?>
            
             <div class="container ">
                 <div class="row mt-3">
@@ -37,8 +37,7 @@
                                                 <div class="title-dark-blue">
                                                     สวัสดี,
                                                     <?php echo $_SESSION['username'] ?>
-                                                  
-
+                                                
                                                 </div>
                                             </b>
                                         </h3>
@@ -92,7 +91,7 @@
 
             </div>
         </div>
-        <?php include_once(APPPATH . 'views/js.php'); ?>
+        <?php include_once(base_url() . 'application\views\js.php'); ?>
         <!-- MDB -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
         <script>
