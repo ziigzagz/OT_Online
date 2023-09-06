@@ -69,8 +69,7 @@ class OTRequestModel extends CI_Model
 		INNER JOIN `tb_employees` as tb_emp ON tb_req.employee_id = tb_emp.employees_id 
 		INNER JOIN `tb_roles` as tb_roles ON tb_req.roles_id = tb_roles.id 
 		INNER JOIN `tb_sect` as tb_sect ON tb_emp.employees_sect = tb_sect.id
-		LEFT JOIN `tb_approver` as tb_approver ON tb_req.approved_by = tb_approver.id"
-		;
+		LEFT JOIN `tb_approver` as tb_approver ON tb_req.approved_by = tb_approver.id";
 		$query = $this->db->query($sql);
 		$res = $query->result();
 		$data['data'] = $res;
@@ -94,7 +93,7 @@ class OTRequestModel extends CI_Model
 		$data["result"] = "success";
 		return $data;
 	}
-	
+
 	public function GetOTRequestApprovedGroup()
 	{
 		$sect = $_SESSION['sect'];
@@ -284,7 +283,6 @@ class OTRequestModel extends CI_Model
 			$data["result"] = "success";
 		}
 		return $data;
-
 	}
 	public function RejectByID()
 	{
@@ -402,18 +400,18 @@ class OTRequestModel extends CI_Model
 			อนุมัติรายการ ที่ลิงค์ $host
 			<br>
 			<table border='1' style='border-collapse: collapse;'>"
-			. "<thead>"
-			. "<tr>"
-			. "<th>ชื่อ-นามสกุล</th>"
-			. "<th>ตำแหน่ง</th>"
-			. "<th>วันที่</th>"
-			. "<th>เวลา</th>"
-			. "<th>รายละเอียด</th>"
-			. "<th>เครื่องจักร</th>"
-			. "<th>สายรถ</th>"
-			. "</tr>"
-			. "</thead>"
-			. "<tbody>";
+				. "<thead>"
+				. "<tr>"
+				. "<th>ชื่อ-นามสกุล</th>"
+				. "<th>ตำแหน่ง</th>"
+				. "<th>วันที่</th>"
+				. "<th>เวลา</th>"
+				. "<th>รายละเอียด</th>"
+				. "<th>เครื่องจักร</th>"
+				. "<th>สายรถ</th>"
+				. "</tr>"
+				. "</thead>"
+				. "<tbody>";
 			// loop body
 			foreach ($DataList as $key => $value) {
 				$employees_id = $value['employees_id'];
@@ -447,13 +445,25 @@ class OTRequestModel extends CI_Model
 			$this->load->library('email');
 			$this->email->initialize($config);
 			$this->email->from('iffan.hym@gmail.com', 'รายการขออนุมัติ OT');
-			if($Sect == "EL") {
-				$this->email->to('iffan.hym@gmail.com');
-			} else  if($Sect == "MC" || $Sect == "US") {
-				$this->email->to('iffan.h@ideabranch.co.th');
+
+			if ($_SERVER['HTTP_HOST'] == "localhost") {
+				if ($Sect == "EL") {
+					$this->email->to('iffan.hym@gmail.com');
+				} else  if ($Sect == "MC" || $Sect == "US") {
+					$this->email->to('iffan.hym@gmail.com');
+				} else {
+					$this->email->to('iffan.hym@gmail.com');
+				}
 			} else {
-				$this->email->to('iffan.hym@gmail.com');
+				if ($Sect == "EL") {
+					$this->email->to('supoj_s@aoyama.co.th');
+				} else  if ($Sect == "MC" || $Sect == "US") {
+					$this->email->to('santi@aoyama.co.th');
+				} else {
+					$this->email->to('iffan.hym@gmail.com');
+				}
 			}
+			
 			$this->email->subject('รายการขออนุมัติ OT');
 			$this->email->message($html);
 			$this->email->send();
