@@ -24,14 +24,17 @@ class Admin extends CI_Controller
 	public function OTRequest()
 	{
 		$this->load->view('css');
-		// $this->load->view('js');
 		$this->load->view('Admin/OTRequest.php');
 	}
 	public function OTRequestHRM()
 	{
 		$this->load->view('css');
-		// $this->load->view('js');
 		$this->load->view('Admin/OTRequestHRM.php');
+	}
+	public function Employees()
+	{
+		$this->load->view('css');
+		$this->load->view('Admin/Employees.php');
 	}
 
 }

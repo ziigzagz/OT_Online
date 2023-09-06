@@ -12,8 +12,6 @@
 </head>
 
 <body>
-
-
     <div class="">
         <div class="custom-shape-divider-top-1693803862">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -23,10 +21,8 @@
             </svg>
         </div>
         <div class="content">
-
+            <div class="container-fluid">
             <?php include(APPPATH ."views/Nav/Navbar_admin.php"); ?>
-
-            <div class="container ">
                 <div class="row mt-3">
                     <div class="col mx-auto">
                         <div class="card ">
@@ -47,44 +43,6 @@
                             </div>
                         </div>
 
-                    </div>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="myModalInfo" tabindex="-1" role="dialog" aria-labelledby="myModalInfo" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <button class="btn btn-success" onclick="ApprovedAllKey()">อนุมัติทั้งหมด</button>
-                                        <button class="btn btn-danger" onclick="RejectdAllKey()">ไม่อนุมัติทั้งหมด</button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="text" id="request_key" hidden>
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col text-center">
-                                        <!-- table info -->
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-bordered text-center" id="tb_info">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-center">ชื่อ</th>
-                                                        <th class="text-center">สายรถ</th>
-                                                        <th class="text-center">เวลาบันทึก</th>
-                                                        <th class="text-center">#</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tb_info_body"></tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

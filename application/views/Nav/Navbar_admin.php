@@ -15,11 +15,14 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="Admin" href="<?php echo base_url()?>Admin/OTRequestHRM">Export HRM</a>
                 </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" aria-current="Admin" href="<?php echo base_url()?>Admin/Employees">พนักงาน</a>
+                </li> -->
             </ul>
             <form class="d-flex" role="search">
-            <a href="<?php echo base_url() ?>Logout">
-                <button type="button" class="btn btn-danger ms-3">ออกจากระบบ</button>
-            </a>
+                <a href="<?php echo base_url() ?>Logout">
+                    <button type="button" class="btn btn-danger ms-3">ออกจากระบบ</button>
+                </a>
             </form>
         </div>
     </div>
