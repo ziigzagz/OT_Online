@@ -22,7 +22,7 @@
 		</div>
 		<div class="content">
 			<div class="container-fluid">
-			<?php include(APPPATH ."views/Nav/Navbar_admin.php"); ?>
+				<?php include(APPPATH . "views/Nav/Navbar_admin.php"); ?>
 				<div class="row mt-3">
 					<div class="col mx-auto">
 						<div class="card ">
@@ -62,7 +62,7 @@
 														</th>
 														<th class="text-center">เวลาทำ OT</th>
 														<th class="text-center">เวลาทำ OT</th>
-														
+
 														<th class="text-center">CompanyCode</th>
 														<th class="text-center">Date Type[1, 2, 3]</th>
 														<th class="text-center">ApproveFlag[1, 2, 3]</th>
@@ -147,15 +147,9 @@
 						[9, 'desc']
 					],
 					dom: 'Bfrtip',
-					buttons: [{
-						extend: 'excelHtml5',
-						customize: function(xlsx) {
-							var sheet = xlsx.xl.worksheets['sheet1.xml'];
-
-							// jQuery selector to add a border
-							$('row c[r*="10"]', sheet).attr('s', '25');
-						}
-					}],
+					buttons: [
+						'copy', 'csv', 'excel'
+					],
 					ajax: {
 						'url': host + 'OTRequest/GetOTRequestAllGroup',
 						'type': 'GET',

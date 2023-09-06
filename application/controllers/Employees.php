@@ -11,8 +11,16 @@ class Employees extends CI_Controller
 
     public function getEmployees()
     {
-			$EmployeesModel = new EmployeesModel();
-			$data = $EmployeesModel->getEmployees();
-			echo json_encode($data);
+        $EmployeesModel = new EmployeesModel();
+        $data = $EmployeesModel->getEmployees();
+        echo json_encode($data);
+    }
+    public function getEmployeesDetail()
+    {
+        $EmployeesModel = new EmployeesModel();
+        $data = $EmployeesModel->getEmployeesDetail();
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($data));
     }
 }

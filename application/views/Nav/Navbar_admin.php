@@ -15,9 +15,9 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="Admin" href="<?php echo base_url()?>Admin/OTRequestHRM">Export HRM</a>
                 </li>
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" aria-current="Admin" href="<?php echo base_url()?>Admin/Employees">พนักงาน</a>
-                </li> -->
+                </li>
             </ul>
             <form class="d-flex" role="search">
                 <a href="<?php echo base_url() ?>Logout">
