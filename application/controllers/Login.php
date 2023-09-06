@@ -5,7 +5,7 @@ class Login extends CI_Controller
 {
 	public $output;
 	public $session;
-	public $ExpireTime = 10000;
+	public $ExpireTime = 60000;
 	public function __construct()
 	{
 		parent::__construct();
