@@ -81,13 +81,13 @@ class OTRequestModel extends CI_Model
 	public function GetOTRequestWaitGroup()
 	{
 		$sect = $_SESSION['sect'];
-		$sql = "SELECT tb_req.`request_key`, tb_roles.roles, tb_req.ot_starttime, tb_req.ot_endtime, tb_req.ot_date, tb_req.cars_text, tb_req.work_detail, tb_req.machine_name, tb_req.createdate, tb_sect.sects 
+		$sql = "SELECT tb_req.`request_key`, tb_roles.roles, tb_req.ot_starttime, tb_req.ot_endtime, tb_req.ot_date, tb_req.work_detail, tb_req.machine_name, tb_req.createdate, tb_sect.sects 
 		FROM `tb_ot_request` as tb_req 
 		INNER JOIN `tb_employees` as tb_emp ON tb_req.employee_id = tb_emp.employees_id 
 		INNER JOIN `tb_roles` as tb_roles ON tb_req.roles_id = tb_roles.id 
 		INNER JOIN `tb_sect` as tb_sect ON tb_emp.employees_sect = tb_sect.id 
 		WHERE tb_req.approved_status = 0 AND tb_emp.employees_sect in ($sect) 
-		GROUP BY tb_req.`request_key`, tb_roles.roles, tb_req.ot_starttime, tb_req.ot_endtime, tb_req.ot_date, tb_req.cars_text, tb_req.work_detail, tb_req.machine_name, tb_req.createdate, tb_sect.sects ;  -- Include tb_roles.roles in GROUP BY";
+		GROUP BY tb_req.`request_key`, tb_roles.roles, tb_req.ot_starttime, tb_req.ot_endtime, tb_req.ot_date, tb_req.work_detail, tb_req.machine_name, tb_req.createdate, tb_sect.sects ;  -- Include tb_roles.roles in GROUP BY";
 		$query = $this->db->query($sql);
 		$res = $query->result();
 		$data['data'] = $res;
