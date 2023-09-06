@@ -402,6 +402,7 @@ class OTRequestModel extends CI_Model
 			<table border='1' style='border-collapse: collapse;'>"
 				. "<thead>"
 				. "<tr>"
+				. "<th>รหัสพนักงาน</th>"
 				. "<th>ชื่อ-นามสกุล</th>"
 				. "<th>ตำแหน่ง</th>"
 				. "<th>วันที่</th>"
@@ -418,6 +419,7 @@ class OTRequestModel extends CI_Model
 				$employees_name = $value['employees_name'];
 				$cars = $value['cars'];
 				$html .= "<tr>"
+					. "<td>$$employees_id</td>"
 					. "<td>$employees_name</td>"
 					. "<td>$Roles</td>"
 					. "<td>$DateOT</td>"
