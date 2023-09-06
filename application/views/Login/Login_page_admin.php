@@ -86,9 +86,10 @@
 			$.ajax({
 				type: "POST",
 				url: "<?= base_url('Login/checkloginAdmin') ?>",
+				// lowercase username and password
 				data: {
-					username: $('#username').val(),
-					password: $('#password').val()
+					username: $("#username").val().toLowerCase(),
+					password: $("#password").val().toLowerCase(),
 				},
 				dataType: "JSON",
 				success: function (response) {

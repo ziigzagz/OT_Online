@@ -87,8 +87,8 @@
 				type: "POST",
 				url: "<?= base_url('Login/checklogin') ?>",
 				data: {
-					username: $('#username').val(),
-					password: $('#password').val()
+					username: $('#username').val().toLowerCase(),
+					password: $('#password').val().toLowerCase(),
 				},
 				dataType: "JSON",
 				success: function(response) {
