@@ -492,6 +492,7 @@
 		}
 
 		function addToOLList() {
+			fetchEmp()
 			let template = ``;
 			for (var index = 0; index < count; ++index) {
 				let emp_id = $(`#EmpID`).val();
@@ -529,7 +530,7 @@
 		function clearEmplistpanel() {
 			// clear ol list all
 			$("#ol-emp-list").empty();
-
+			DataList = {}
 			// if not select sect set readonly Emp-list-panel
 			if ($(`#Sect`).val().length == 0) {
 				$('#EmpID').attr('readonly', true);

@@ -25,10 +25,10 @@
 				<div class="row">
 					<div class="col">
 						<div class="card text-center">
-							<div class="card-body text-uppercase title-dark-blue">
+							<div class="card-body  title-dark-blue">
 								<h1>
 									<b>
-										ATC OT Online
+										ATC OT On Mobile
 									</b>
 								</h1>
 							</div>
