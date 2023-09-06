@@ -347,7 +347,8 @@
 				"DataList": DataList,
 			}
 			console.log(data)
-
+			// disable submit btn
+			$(`.btn-create`).attr("disabled", true);
 			$.ajax({
 				url: "<?php echo base_url(); ?>OTRequest/CreateOTRequest",
 				type: "POST",
@@ -388,6 +389,7 @@
 							showConfirmButton: false,
 							timer: 1500
 						})
+						$(`.btn-create`).attr("disabled", false);
 					} else {
 
 					}

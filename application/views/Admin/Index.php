@@ -24,7 +24,7 @@
         </div>
         <div class="content">
 
-            <?php include_once(APPPATH . "application/views/Nav/Navbar_admin.php"); ?>
+            <?php include(APPPATH ."views/Nav/Navbar_admin.php"); ?>
 
             <div class="container ">
                 <div class="row mt-3">
