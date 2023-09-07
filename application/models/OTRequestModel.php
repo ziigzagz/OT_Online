@@ -461,7 +461,7 @@ class OTRequestModel extends CI_Model
 					$this->email->to('supoj_s@aoyama.co.th');
 				} else  if ($Sect == "MC" || $Sect == "US") {
 					// $this->email->to('santi@aoyama.co.th');
-					$this->email->to('somsak@aoyama.co.th');
+					$this->email->to('it_admin@aoyama.co.th');
 				} else {
 					$this->email->to('iffan.hym@gmail.com');
 				}
