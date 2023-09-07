@@ -419,7 +419,7 @@ class OTRequestModel extends CI_Model
 				$employees_name = $value['employees_name'];
 				$cars = $value['cars'];
 				$html .= "<tr>"
-					. "<td>$$employees_id</td>"
+					. "<td>$employees_id</td>"
 					. "<td>$employees_name</td>"
 					. "<td>$Roles</td>"
 					. "<td>$DateOT</td>"
@@ -452,7 +452,7 @@ class OTRequestModel extends CI_Model
 				if ($Sect == "EL") {
 					$this->email->to('iffan.hym@gmail.com');
 				} else  if ($Sect == "MC" || $Sect == "US") {
-					$this->email->to('iffan.hym@gmail.com');
+					$this->email->to('somsak@aoyama.co.th');
 				} else {
 					$this->email->to('iffan.hym@gmail.com');
 				}
@@ -465,6 +465,12 @@ class OTRequestModel extends CI_Model
 					$this->email->to('iffan.hym@gmail.com');
 				}
 			}
+			$res = array(
+				'response_code' => 200,
+				'status' => "success",
+				'sect' => $Sect,
+				'HTTP_HOST' => $_SERVER['HTTP_HOST'],
+			);
 			
 			$this->email->subject('รายการขออนุมัติ OT');
 			$this->email->message($html);
