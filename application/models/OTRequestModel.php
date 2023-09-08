@@ -429,6 +429,7 @@ class OTRequestModel extends CI_Model
 					. "<td>$cars</td>"
 					. "</tr>";
 			}
+			
 			$html .= "</tbody>"
 				. "</table>";
 
@@ -450,18 +451,17 @@ class OTRequestModel extends CI_Model
 
 			if ($_SERVER['HTTP_HOST'] == "localhost") {
 				if ($Sect == "EL") {
-					$this->email->to('iffan.hym@gmail.com');
+					$this->email->to('iffan.h@ku.th');
 				} else  if ($Sect == "MC" || $Sect == "US") {
-					$this->email->to('somsak@aoyama.co.th');
+					$this->email->to('iffan.h@ku.th');
 				} else {
-					$this->email->to('iffan.hym@gmail.com');
+					$this->email->to('iffan.h@ku.th');
 				}
 			} else {
 				if ($Sect == "EL") {
 					$this->email->to('supoj_s@aoyama.co.th');
 				} else  if ($Sect == "MC" || $Sect == "US") {
-					// $this->email->to('santi@aoyama.co.th');
-					$this->email->to('it_admin@aoyama.co.th');
+					$this->email->to('santi@aoyama.co.th');
 				} else {
 					$this->email->to('iffan.hym@gmail.com');
 				}

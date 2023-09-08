@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="<?php echo base_url()?>node_modules\sweetalert2\dist\sweetalert2.min.css">
 <link rel="stylesheet" href="<?php echo base_url()?>node_modules\apexcharts\dist\apexcharts.css">
 <link rel="stylesheet" href="<?php echo base_url()?>node_modules\highcharts\css\highcharts.css">
-<link rel="stylesheet" href="<?php echo base_url()?>node_modules\@fortawesome\fontawesome-free\css\all.css">
 <!-- MDB -->
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
