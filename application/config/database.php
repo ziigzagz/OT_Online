@@ -101,8 +101,8 @@ else{
 	$db['default'] = array(
 		'dsn'	=> '',
 		'hostname' => 'localhost',
-		'username' => 'ziigzag_ot_online',
-		'password' => '1fF@nHyM*',
+		'username' => 'admin_ot_online',
+		'password' => '8Td!53tq6',
 		'database' => 'ot_online',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
