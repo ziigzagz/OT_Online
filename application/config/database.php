@@ -76,14 +76,13 @@ $query_builder = TRUE;
 
 $server_host = $_SERVER['HTTP_HOST'];
 $current_host = "localhost";
-
 if(strpos($server_host, $current_host) !== false){
 	$db['default'] = array(
 		'dsn'	=> '',
-		'hostname' => 'db',
-		'username' => 'MYSQL_USER',
-		'password' => 'MYSQL_PASSWORD',
-		'database' => 'MYSQL_DATABASE',
+		'hostname' => 'localhost',
+		'username' => 'root',
+		'password' => '',
+		'database' => 'test',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => TRUE,
@@ -101,6 +100,7 @@ if(strpos($server_host, $current_host) !== false){
 	);
 }
 else{
+	
 	$db['default'] = array(
 		'dsn'	=> '',
 		'hostname' => 'localhost',
