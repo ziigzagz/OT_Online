@@ -23,8 +23,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-if($_SERVER['HTTP_HOST'] == "localhost"){
-    $config['base_url'] = 'http://localhost/OT_Online/';
+$server_host = $_SERVER['HTTP_HOST'];
+$current_host = "localhost";
+
+if(strpos($server_host, $current_host) !== false){
+    $config['base_url'] = 'http://localhost:8080/OT_online/';
 }
 else{
     $config['base_url'] = 'https://otonline.atc-fasteners.com/';
@@ -57,7 +60,7 @@ $config['index_page'] = '';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= 'AUTO';
+$config['uri_protocol']	= 'REQUEST_URI';
 
 /*
 |--------------------------------------------------------------------------

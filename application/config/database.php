@@ -74,13 +74,16 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 
-if($_SERVER['HTTP_HOST'] == "localhost"){
+$server_host = $_SERVER['HTTP_HOST'];
+$current_host = "localhost";
+
+if(strpos($server_host, $current_host) !== false){
 	$db['default'] = array(
 		'dsn'	=> '',
-		'hostname' => 'localhost',
-		'username' => 'root',
-		'password' => '',
-		'database' => 'ot_online',
+		'hostname' => 'db',
+		'username' => 'MYSQL_USER',
+		'password' => 'MYSQL_PASSWORD',
+		'database' => 'MYSQL_DATABASE',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => TRUE,
