@@ -23,11 +23,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+
 $server_host = $_SERVER['HTTP_HOST'];
 $current_host = "localhost";
 
 if(strpos($server_host, $current_host) !== false){
-    $config['base_url'] = 'http://localhost:8080/OT_online/';
+    $config['base_url'] = 'http://localhost/OT_Online/';
 }
 else{
     $config['base_url'] = 'https://otonline.atc-fasteners.com/';

@@ -72,6 +72,18 @@
 							</div>
 						</a>
 					</div>
+					<div class="col-12 col-md-6 col-lg-4 mt-3 text-center">
+						<a href="<?php echo base_url() ?>CheckRequest">
+							<div class="card">
+								<div class="card-body">
+									<img src="<?php echo base_url() ?>assets\img\checked_2212809.png" alt="" height="50">
+									<h4 class="mt-2">
+										ตรวจสอบผล<br>การขออนุมัติ OT Online
+									</h4>
+								</div>
+							</div>
+						</a>
+					</div>
 				</div>
 
 			</div>
