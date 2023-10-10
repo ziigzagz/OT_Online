@@ -264,6 +264,7 @@
 					'url': host + 'OTRequest/GetOTRequestWaitGroup',
 					'type': 'GET',
 				},
+				order: [[5, 'desc']],
 				columns: [{
 					data: 'roles'
 				},
@@ -298,7 +299,7 @@
 			});
 			var table_approved = $('#tb_approved').DataTable({
 				processing: true,
-
+				order: [[5, 'desc']],
 				ajax: {
 					'url': host + 'OTRequest/GetOTRequestApprovedGroup',
 					'type': 'GET',
@@ -337,7 +338,7 @@
 			});
 			var table_rejected = $('#tb_rejected').DataTable({
 				processing: true,
-
+				order: [[5, 'desc']],
 				ajax: {
 					'url': host + 'OTRequest/GetOTRequestRejectedGroup',
 					'type': 'GET',
