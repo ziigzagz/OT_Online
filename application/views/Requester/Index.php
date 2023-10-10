@@ -14,10 +14,17 @@
 <body>
 	<div class="">
 		<div class="custom-shape-divider-top-1693803862">
-			<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-				<path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
-				<path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
-				<path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+			<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+				preserveAspectRatio="none">
+				<path
+					d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+					opacity=".25" class="shape-fill"></path>
+				<path
+					d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+					opacity=".5" class="shape-fill"></path>
+				<path
+					d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+					class="shape-fill"></path>
 			</svg>
 		</div>
 		<div class="content">
@@ -30,7 +37,8 @@
 									<div class="row py-3">
 										<div class="col text-center">
 											<h1>
-												<b class="d-flex justify-content-center mx-auto text-center flex-column">
+												<b
+													class="d-flex justify-content-center mx-auto text-center flex-column">
 													<div class="title-blue">
 														แบบฟอร์ม
 													</div>
@@ -50,7 +58,8 @@
 									<div class="row mt-3">
 										<div class="col-12 col-lg-4 text-start">
 											วันที่ทำ OT <span class="text-danger">*</span>
-											<input type="text" name="DateOT" id="DateOT" size="30" class="form-control" placeholder="ระบุวันที่ทำ OT" readonly>
+											<input type="text" name="DateOT" id="DateOT" size="30" class="form-control"
+												placeholder="ระบุวันที่ทำ OT" readonly>
 										</div>
 										<div class="col-12 col-lg-4 text-start">
 											<div class="row">
@@ -60,7 +69,8 @@
 											</div>
 											<div class="row">
 												<div class="col">
-													<input type="time" id="StartOT" name="StartOT" class="form-control" min="00:00" max="23:59" onchange="updateEndTime()">
+													<input type="time" id="StartOT" name="StartOT" class="form-control"
+														min="00:00" max="23:59" onchange="updateEndTime()">
 												</div>
 											</div>
 										</div>
@@ -88,7 +98,8 @@
 										</div>
 										<div class="col-12 col-lg-6 text-start">
 											Sect <span class="text-danger">*</span>
-											<select name="Sect" id="Sect" class="form-select" onchange="clearEmplistpanel()">
+											<select name="Sect" id="Sect" class="form-select"
+												onchange="clearEmplistpanel()">
 												<option value>-- เลือก Sect --</option>
 											</select>
 										</div>
@@ -97,11 +108,13 @@
 									<div class="row mt-3">
 										<div class="col-12 col-lg-6">
 											รายละเอียดงานที่ปฏิบัติ <span class="text-danger">*</span>
-											<textarea name="WorkDetail" id="WorkDetail" cols="30" rows="5" class="form-control"></textarea>
+											<textarea name="WorkDetail" id="WorkDetail" cols="30" rows="5"
+												class="form-control"></textarea>
 										</div>
 										<div class="col-12 col-lg-6">
 											Machine Name<span class="text-danger">*</span>
-											<textarea name="MachineName" id="MachineName" cols="30" rows="5" class="form-control"></textarea>
+											<textarea name="MachineName" id="MachineName" cols="30" rows="5"
+												class="form-control"></textarea>
 										</div>
 									</div>
 									<div class="row mt-3">
@@ -122,10 +135,13 @@
 									<div id="Emp-list-panel">
 										<div class="row d-flex justify-content-center align-items-center">
 											<div class="col-12 col-sm-3  text-start mt-2">
-												<input type="text" name="EmpID" id="EmpID" maxlength="6" minlength="6" class="form-control" onchange="fetchEmp()" placeholder="รหัสพนักงาน" readonly>
+												<input type="text" name="EmpID" id="EmpID" maxlength="6" minlength="6"
+													class="form-control" onkeyup="fetchEmp()" placeholder="รหัสพนักงาน"
+													readonly>
 											</div>
 											<div class="col-12 col-sm-3  text-start mt-2">
-												<input readonly type="text" name="EmpName" id="EmpName" class="form-control" placeholder="ชื่อ" readonly>
+												<input readonly type="text" name="EmpName" id="EmpName"
+													class="form-control" placeholder="ชื่อ" readonly>
 											</div>
 											<div class="col-12 col-sm-3 text-start mt-2">
 												<select name="CarTravel" id="CarTravel" class="form-select" readonly>
@@ -133,7 +149,8 @@
 												</select>
 											</div>
 											<div class="col-12 col-sm-3 ">
-												<button type="button" class="btn btn-add-emp form-control" onclick="addToOLList()">เพิ่ม</button>
+												<button type="button" class="btn btn-add-emp form-control"
+													onclick="addToOLList()">เพิ่ม</button>
 											</div>
 											<div class="mt-2"></div>
 										</div>
@@ -145,7 +162,8 @@
 									<hr>
 									<div class="row mt-3">
 										<div class="col text-center">
-											<button type="button" class="btn btn-create" onclick="CheckForm()">บันทึก</button>
+											<button type="button" class="btn btn-create"
+												onclick="CheckForm()">บันทึก</button>
 											<!-- <button type="reset" class="btn btn-clear">ล้างข้อมูล</button> -->
 										</div>
 									</div>
@@ -156,7 +174,8 @@
 				</div>
 
 				<!-- Modal -->
-				<div class="modal fade" id="myModalSending" tabindex="-1" role="dialog" aria-labelledby="myModalSending" aria-hidden="true">
+				<div class="modal fade" id="myModalSending" tabindex="-1" role="dialog" aria-labelledby="myModalSending"
+					aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-body">
@@ -175,7 +194,8 @@
 					</div>
 				</div>
 				<!-- Modal -->
-				<div class="modal fade" id="myModalSending" tabindex="-1" role="dialog" aria-labelledby="myModalSending" aria-hidden="true">
+				<div class="modal fade" id="myModalSending" tabindex="-1" role="dialog" aria-labelledby="myModalSending"
+					aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-body">
@@ -335,7 +355,7 @@
 				type: "POST",
 				dataType: "json",
 				data: data,
-				success: function(response) {
+				success: function (response) {
 					console.log(response)
 					if (response.status == "success") {
 						// clear form
@@ -376,7 +396,7 @@
 
 					}
 				},
-				error: function(jqXHR, textStatus, errorThrown) {
+				error: function (jqXHR, textStatus, errorThrown) {
 					console.log(textStatus, errorThrown);
 				}
 			});
@@ -394,7 +414,9 @@
 						var option = document.createElement("option");
 						option.value = EmpList[emp_id].cars_id;
 						option.text = EmpList[emp_id].cars;
-						list.appendChild(option);
+						// check duplicate
+						if ($(`#CarTravel option[value=${EmpList[emp_id].cars_id}]`).length == 0)
+							list.appendChild(option);
 						// select last option
 						$(`#CarTravel`).val(EmpList[emp_id].cars_id);
 					}
@@ -414,19 +436,23 @@
 					// remove all option except first option
 					$(`#CarTravel option:not(:first)`).remove();
 				}
-
-			} else {
-				Swal.fire({
-					icon: 'error',
-					title: 'ไม่พบข้อมูลพนักงาน',
-					showConfirmButton: false,
-					timer: 1500
-				}).then(() => {
-					// focus input
-					$(`#EmpID`).focus()
-				})
+			}else{
 				$(`#EmpName`).val("")
+				// remove all option except first option
+				$(`#CarTravel option:not(:first)`).remove();
 			}
+			// } else {
+			// 	Swal.fire({
+			// 		icon: 'error',
+			// 		title: 'ไม่พบข้อมูลพนักงาน',
+			// 		showConfirmButton: false,
+			// 		timer: 1500
+			// 	}).then(() => {
+			// 		// focus input
+			// 		$(`#EmpID`).focus()
+			// 	})
+			// 	$(`#EmpName`).val("")
+			// }
 		}
 
 		function GenerateID() {
@@ -445,7 +471,7 @@
 				url: "<?php echo base_url(); ?>Roles/getRoles",
 				type: "POST",
 				dataType: "json",
-				success: function(response) {
+				success: function (response) {
 					// console.log(response)
 					roles = response;
 					var list = document.getElementById('Roles');
@@ -469,7 +495,7 @@
 				url: "<?php echo base_url(); ?>Employees/getEmployees",
 				type: "POST",
 				dataType: "json",
-				success: function(response) {
+				success: function (response) {
 					console.log(response)
 					response.forEach(element => {
 						EmpList[element.employees_id] = element
@@ -492,27 +518,29 @@
 		}
 
 		function addToOLList() {
-			fetchEmp()
+			// fetchEmp()
 			let template = ``;
-			for (var index = 0; index < count; ++index) {
-				let emp_id = $(`#EmpID`).val();
-				let emp_name = $(`#EmpName`).val();
-				let car_travel = $(`#CarTravel`).val();
-				if (emp_id.trim().length == 6 && emp_name.trim().length > 0 && DataList.hasOwnProperty(emp_id) == false) {
-					template += `<li class="my-3" id="li-${emp_id}">
+			// for (var index = 0; index < count; ++index) {
+			let emp_id = $(`#EmpID`).val();
+			let emp_name = $(`#EmpName`).val();
+			let car_travel = $(`#CarTravel`).val();
+			console.log(car_travel);
+			console.log($(`#CarTravel option:selected`).text());
+			if (emp_id.trim().length == 6 && emp_name.trim().length > 0 && DataList.hasOwnProperty(emp_id) == false) {
+				template += `<li class="my-3" id="li-${emp_id}">
 								(${emp_id}) ${emp_name} - ${$(`#CarTravel option:selected`).text()} <br><button type="button" class="btn btn-danger" onclick="removeFromOLList(${emp_id})">ลบ</button>
 							</li>`
-					DataList[emp_id] = {
-						"employees_id": emp_id,
-						"employees_name": emp_name,
-						"cars_id": car_travel,
-						"cars": $(`#CarTravel option:selected`).text(),
-					}
-					console.log(DataList)
+				DataList[emp_id] = {
+					"employees_id": emp_id,
+					"employees_name": emp_name,
+					"cars_id": car_travel,
+					"cars": $(`#CarTravel option:selected`).text(),
 				}
+				console.log(DataList)
 			}
+			// }
 			$("#ol-emp-list").append(template)
-			// clear input
+			// // clear input
 			$(`#EmpID`).val("")
 			$(`#EmpName`).val("")
 			$(`#CarTravel option:not(:first)`).remove();

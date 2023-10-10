@@ -79,9 +79,9 @@ $current_host = "localhost";
 if(strpos($server_host, $current_host) !== false){
 	$db['default'] = array(
 		'dsn'	=> '',
-		'hostname' => 'http://147.50.231.32:3306',
-		'username' => 'admin_ot_online',
-		'password' => '8Td!53tq6',
+		'hostname' => 'localhost',
+		'username' => 'root',
+		'password' => '',
 		'database' => 'ot_online',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
