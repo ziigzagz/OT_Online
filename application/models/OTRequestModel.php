@@ -512,7 +512,7 @@ class OTRequestModel extends CI_Model
 			$this->email->from('iffan.hym@gmail.com', 'รายการขออนุมัติ OT');
 			$server_host = $_SERVER['HTTP_HOST'];
 			$current_host = "localhost";
-			
+			// if request from localhost use this email
 			if(strpos($server_host, $current_host) !== false){
 			
 				if ($Sect == "EL") {
