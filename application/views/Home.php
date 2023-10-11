@@ -78,7 +78,7 @@
 								<div class="card-body">
 									<img src="<?php echo base_url() ?>assets\img\checked_2212809.png" alt="" height="50">
 									<h4 class="mt-2">
-										ตรวจสอบผล<br>การขออนุมัติ OT Online
+										ตรวจสอบสถานะ
 									</h4>
 								</div>
 							</div>
