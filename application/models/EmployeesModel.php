@@ -40,24 +40,80 @@ class EmployeesModel extends CI_Model
         // return $query->result();
     }
 
-    public function insert_data()
+    public function insert_employee()
     {
-        // $this->db->trans_begin();
+        $this->db->trans_begin();
+       
+        $employees_id = $_REQUEST['employees_id'];
+        $employees_name = $_REQUEST['employees_name'];
+        $employees_sect = $_REQUEST['employees_sect'];
+        $cars_id = $_REQUEST['cars_id'];
+        // check duplicate employees_id
+        $sql = "SELECT * FROM `tb_employees` WHERE `employees_id` = '$employees_id'";
+        $query = $this->db->query($sql);
+        $res = $query->result();
+        if (count($res) > 0) {
+            $res = array(
+                'response_code' => -1,
+                'response_msg' => 'รหัสพนักงานซ้ำ'
+            );
+            return $res;
+        }
 
-        // $sql = "INSERT INTO table_name_test (name, email, url) VALUES ('Rick', 'rick@example.com', 'example.com')";
-        // $query = $this->db->query($sql);
+
+        try {
+            //code...
+            $sql = "INSERT INTO `tb_employees` (`id`, `employees_id`, `employees_name`, `employees_sect`, `cars_id`, `createdate`) VALUES (NULL, '$employees_id', '$employees_name', '$employees_sect', '$cars_id', current_timestamp());";
+            $query = $this->db->query($sql);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
  
-        // if ($this->db->trans_status() === FALSE) {
-        //     $this->db->trans_rollback();
-        //     $res = array(
-        //         'response_code' => -1
-        //     );
-        // } else {
-        //     $this->db->trans_commit();
-        //     $res = array(
-        //         'response_code' => 200,
-        //     );
-        // }
-        // return $res;
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            $res = array(
+                'response_code' => -1
+                
+            );
+        } else {
+            $this->db->trans_commit();
+            $res = array(
+                'response_code' => 200,
+                'response_msg' => 'เพิ่มข้อมูลสำเร็จ'
+            );
+        }
+        return $res;
+    }
+
+    public function delete_employee()
+    {
+        $this->db->trans_begin();
+       
+        $id = $_REQUEST['id'];
+
+        try {
+            //code...
+            $sql = "DELETE FROM `tb_employees` WHERE `tb_employees`.`id` = $id";
+            $query = $this->db->query($sql);
+        } catch (\Throwable $th) {
+            $this->db->trans_rollback();
+        }
+
+ 
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            $res = array(
+                'response_code' => -1
+
+            );
+        } else {
+            $this->db->trans_commit();
+            $res = array(
+                'response_code' => 200,
+                'response_msg' => 'ลบข้อมูลสำเร็จ',
+            );
+        }
+        return $res;
     }
 }

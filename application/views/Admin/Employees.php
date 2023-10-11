@@ -40,6 +40,60 @@
                                         </h3>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#InsertFormModal">
+                                            เพิ่มพนักงาน
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="InsertFormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">เพิ่มพนักงาน</h5>
+                                                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <form id="insert_form">
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-outline mt-3">
+                                                                        <input class="form-control" type="text" name="employees_id" id="employees_id" required>
+                                                                        <label for="employees_id" class="form-label">รหัสพนักงาน:</label>
+                                                                    </div>
+
+                                                                    <div class="form-outline mt-3">
+                                                                        <input class="form-control" type="text" name="employees_name" id="employees_name" required>
+                                                                        <label for="employees_name" class="form-label">ชื่อ - สกุล:</label>
+                                                                    </div>
+
+                                                                    <div class="form-outline mt-3">
+                                                                        <select name="employees_sect" id="employees_sect" class="form-select" required>
+                                                                            <option value="">เลือก Sects</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-outline mt-3">
+                                                                        <!-- select cars-->
+                                                                        <select name="cars_id" id="cars_id" class="form-select" required>
+                                                                            <option value="">เลือก สายรถ</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">ปิด</button>
+                                                            <button type="submit" class="btn btn-primary">เพิ่มพนักงาน</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <hr>
                                 <div class="row mt-3">
                                     <div class="col text-center">
@@ -76,6 +130,7 @@
                                                         <th class="text-center">ชื่อ</th>
                                                         <th class="text-center">Sect</th>
                                                         <th class="text-center">สายรถ</th>
+                                                        <th class="text-center">จัดการ</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tb_employees_body">
@@ -90,7 +145,7 @@
                         </div>
                     </div>
                     <!-- modal insert employees -->
-         
+
 
                 </div>
             </div>
@@ -106,14 +161,13 @@
                     ],
                     dom: 'Bfrtip',
                     buttons: [
-						'copy', 'csv', 'excel'
-					],
+                        'copy', 'csv', 'excel'
+                    ],
                     ajax: {
                         'url': host + 'Employees/getEmployeesDetail',
                         'type': 'GET',
                     },
-                    columns: [
-                        {
+                    columns: [{
                             data: null,
                             render: function(data, type, row) {
                                 return `${row.employees_id}`;
@@ -137,7 +191,12 @@
                                 return `${row.cars}`;
                             },
                         },
-                    
+                        {
+                            targets: -1,
+                            data: null,
+                            defaultContent: `<button class="btn btn-danger">ลบ</button>`,
+                        }
+
                         // {
                         // 	targets: -1,
                         // 	data: null,
@@ -182,7 +241,7 @@
                 });
 
                 function getSect() {
-                    let roles = {};
+                    let sects = {};
                     // ajax post request
                     $.ajax({
                         url: "<?php echo base_url(); ?>Sects/getSects",
@@ -190,7 +249,7 @@
                         dataType: "json",
                         success: function(response) {
                             // console.log(response)
-                            roles = response;
+                            sects = response;
                             var list = document.getElementById('Sects');
                             for (const [key, value] of Object.entries(response)) {
                                 // console.log(value)
@@ -199,13 +258,23 @@
                                 option.text = `${value.sects}`;
                                 list.appendChild(option);
                             }
+                            // populate to employees_sect
+                            var list = document.getElementById('employees_sect');
+                            for (const [key, value] of Object.entries(response)) {
+                                // console.log(value)
+                                var option = document.createElement("option");
+                                option.value = `${value.id}`;
+                                option.text = `${value.sects}`;
+                                list.appendChild(option);
+                            }
+
                         },
                     });
-                    return roles;
+                    return sects;
                 }
 
                 function getCars() {
-                    let roles = {};
+                    let cars = {};
                     // ajax post request
                     $.ajax({
                         url: "<?php echo base_url(); ?>Cars/getCars",
@@ -213,7 +282,7 @@
                         dataType: "json",
                         success: function(response) {
                             // console.log(response)
-                            roles = response;
+                            cars = response;
                             var list = document.getElementById('Cars');
                             for (const [key, value] of Object.entries(response)) {
                                 // console.log(value)
@@ -222,10 +291,141 @@
                                 option.text = `${value.cars}`;
                                 list.appendChild(option);
                             }
+                            // populate to cars_id
+                            var list = document.getElementById('cars_id');
+                            for (const [key, value] of Object.entries(response)) {
+                                // console.log(value)
+                                var option = document.createElement("option");
+                                option.value = `${value.id}`;
+                                option.text = `${value.cars}`;
+                                list.appendChild(option);
+                            }
                         },
                     });
-                    return roles;
+                    return cars;
                 }
+
+                function delete_employee(id) {
+                    let data = {
+                        id: id,
+                    }
+                    $.ajax(host + 'Employees/delete_employee', {
+                        data: data,
+                        contentType: "contentType/json",
+                        success: function(response) {
+                            console.log(response)
+                            if (response.response_code == 200) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'ลบพนักงานสำเร็จ',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                // clode modal
+                                $('#InsertFormModal').modal('hide');
+                                tb_employees.ajax.reload();
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: response?.response_msg,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        },
+                        error: function(err) {
+                            console.log(err)
+                        }
+                    });
+                }
+
+                $('#insert_form').submit(function(e) {
+                    e.preventDefault();
+                    // insert_form validate
+                    if (!$('#insert_form').valid()) {
+                        // swal
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+
+                    let employees_id = document.getElementById('employees_id').value;
+                    let employees_name = document.getElementById('employees_name').value;
+                    let employees_sect = document.getElementById('employees_sect').value;
+                    let cars_id = document.getElementById('cars_id').value;
+
+                    let data = {
+                        employees_id: employees_id,
+                        employees_name: employees_name,
+                        employees_sect: employees_sect,
+                        cars_id: cars_id,
+                    };
+
+                    // $.ajax(host + 'OTRequest/GetOTRequestWaitGroupByKey', {
+                    // 	data: data,
+                    // 	contentType: "contentType/json",
+                    // 	success: function(response) {
+                    // 	
+                    $.ajax(host + 'Employees/insert_employee', {
+                        data: data,
+                        contentType: "contentType/json",
+                        success: function(response) {
+                            console.log(response)
+                            if (response.response_code == 200) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'เพิ่มพนักงานสำเร็จ',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                // clode modal
+                                $('#InsertFormModal').modal('hide');
+                                tb_employees.ajax.reload();
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: response?.response_msg,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        },
+                        error: function(err) {
+                            console.log(err)
+                        }
+                    });
+                });
+
+                $('#tb_employees tbody').on('click', 'button.btn-danger', function() {
+                    // swal comfirm
+                    Swal.fire({
+                        title: 'คุณต้องการลบพนักงานใช่หรือไม่?',
+                        text: "คุณจะไม่สามารถย้อนกลับได้!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // swal
+                            Swal.fire({
+                                title: 'กำลังลบพนักงาน',
+                                text: 'กรุณารอสักครู่...',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                                allowEnterKey: false,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                    var row = tb_employees.row($(this).parents('tr')).data();
+                                    delete_employee(row.id);
+                                },
+                            })
+                        }
+                    })
+                });
 
                 async function main() {
                     await getSect();

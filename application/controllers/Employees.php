@@ -23,4 +23,20 @@ class Employees extends CI_Controller
             ->set_content_type('application/json')
             ->set_output(json_encode($data));
     }
+    public function insert_employee()
+    {
+        $EmployeesModel = new EmployeesModel();
+        $data = $EmployeesModel->insert_employee();
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($data));
+    }
+    public function delete_employee()
+    {
+        $EmployeesModel = new EmployeesModel();
+        $data = $EmployeesModel->delete_employee();
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($data));
+    }
 }
