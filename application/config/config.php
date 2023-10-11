@@ -28,7 +28,7 @@ $server_host = $_SERVER['HTTP_HOST'];
 $current_host = "localhost";
 
 if(strpos($server_host, $current_host) !== false){
-    $config['base_url'] = 'http://localhost/OT_Online/';
+    $config['base_url'] = 'http://localhost:8080/OT_online/';
 }
 else{
     $config['base_url'] = 'https://otonline.atc-fasteners.com/';
@@ -399,12 +399,21 @@ $config['sess_expiration'] = 7200;
 
 $server_host = $_SERVER['HTTP_HOST'];
 $current_host = "localhost";
-if(strpos($server_host, $current_host) !== false){
-    $config['sess_save_path'] = NULL;
-}
-else{
+$current_port = $_SERVER['SERVER_PORT'];
+// 8080 is docker port
+if($current_port == '8080'){
     $config['sess_save_path'] = sys_get_temp_dir();
 }
+else{
+    if(strpos($server_host, $current_host) !== false){
+        $config['sess_save_path'] = NULL;
+    }
+    else{
+        echo "else";
+        $config['sess_save_path'] = sys_get_temp_dir();
+    }
+}
+
 
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
