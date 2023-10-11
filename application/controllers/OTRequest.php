@@ -9,6 +9,8 @@ class OTRequest extends CI_Controller
 		date_default_timezone_set("Asia/Bangkok");
 	}
 
+	
+
 	public function CreateOTRequest()
 	{
 		$OTRequestModel = new OTRequestModel();

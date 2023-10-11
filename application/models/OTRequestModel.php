@@ -8,6 +8,50 @@ class OTRequestModel extends CI_Model
 		parent::__construct();
 	}
 
+	// In your controller file, add the following code to send a Line Notify message
+	public function send_line_notify($msg) {
+		// Set the Line Notify API URL and access token
+		$url = 'https://notify-api.line.me/api/notify';
+		$server_host = $_SERVER['HTTP_HOST'];
+		$current_host = "localhost";
+		// ถ้า Reuqest มาจาก localhost ให้ใช้ Token นี้
+		if(strpos($server_host, $current_host) !== false){
+			$access_token = 'HQwmoDyuUMxZEdajRbY9KD64h0d0brcDi6MWiZioWT8';
+		}else{
+			$access_token = 'HQwmoDyuUMxZEdajRbY9KD64h0d0brcDi6MWiZioWT8';
+		}
+
+		// Set the headers for the HTTP request
+		$headers = array(
+			'Content-Type: application/x-www-form-urlencoded',
+			'Authorization: Bearer ' . $access_token,
+		);
+
+		// Set the data to send in the HTTP request body
+		$data = array(
+			'message' => $msg,
+		);
+
+		// Create a new cURL resource
+		$ch = curl_init();
+
+		// Set the cURL options
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		// Execute the cURL request
+		$result = curl_exec($ch);
+
+		// Close the cURL resource
+		curl_close($ch);
+
+		// Output the result of the request
+		return $result;
+	}
+
 	public function getOTRequest()
 	{
 		$sql = "";
@@ -384,7 +428,7 @@ class OTRequestModel extends CI_Model
 				'status' => "success",
 				'sect' => $Sect,
 			);
-
+			$msg_line = '';
 			// select roles
 			$sql = "SELECT roles FROM `tb_roles` WHERE id = '$Roles'";
 			$query = $this->db->query($sql);
@@ -400,7 +444,7 @@ class OTRequestModel extends CI_Model
 				. "<tr>"
 				. "<th>รหัสพนักงาน</th>"
 				. "<th>ชื่อ-นามสกุล</th>"
-				. "<th>ตำแหน่ง</th>"
+				. "<th>ประเภทงาน</th>"
 				. "<th>วันที่</th>"
 				. "<th>เวลา</th>"
 				. "<th>รายละเอียด</th>"
@@ -409,6 +453,28 @@ class OTRequestModel extends CI_Model
 				. "</tr>"
 				. "</thead>"
 				. "<tbody>";
+				
+			$datetime_now = date("Y-m-d H:i:s");
+			// line body
+			$msg_line .= "วันที่ : $DateOT \n";
+			$msg_line .= "เวลา : $StartOT - $EndOT \n";
+			$msg_line .= "รายละเอียด : $WorkDetail \n";
+			$msg_line .= "เครื่องจักร : $MachineName \n";
+			$msg_line .= "วันที่ส่งคำร้อง : $datetime_now น.  \n";
+			$msg_line .= "-----รายชื่อ----- \n";
+			// loop body
+			$i = 1;
+			foreach ($DataList as $key => $value) {
+				$employees_id = $value['employees_id'];
+				$employees_name = $value['employees_name'];
+				$cars = $value['cars'];
+				$msg_line .= "$i.($employees_id)$employees_name - $cars \n";
+				$i++;
+			}
+			$msg_line .= "--------------- \n";
+			$msg_line .= "อนุมัติรายการ ที่ลิงค์\n $host\n";
+			$result_linesended = $this->send_line_notify($msg_line);
+
 			// loop body
 			foreach ($DataList as $key => $value) {
 				$employees_id = $value['employees_id'];
@@ -444,14 +510,17 @@ class OTRequestModel extends CI_Model
 			$this->load->library('email');
 			$this->email->initialize($config);
 			$this->email->from('iffan.hym@gmail.com', 'รายการขออนุมัติ OT');
-
-			if ($_SERVER['HTTP_HOST'] == "localhost") {
+			$server_host = $_SERVER['HTTP_HOST'];
+			$current_host = "localhost";
+			
+			if(strpos($server_host, $current_host) !== false){
+			
 				if ($Sect == "EL") {
-					$this->email->to('iffan.h@ku.th');
+					$this->email->to('iffan.hym@gmail.com');
 				} else  if ($Sect == "MC" || $Sect == "US") {
-					$this->email->to('iffan.h@ku.th');
+					$this->email->to('iffan.hym@gmail.com');
 				} else {
-					$this->email->to('iffan.h@ku.th');
+					$this->email->to('iffan.hym@gmail.com');
 				}
 			} else {
 				if ($Sect == "EL") {
