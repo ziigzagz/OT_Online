@@ -68,7 +68,7 @@
 														<th class="text-center">วันที่ทำ OT</th>
 														<th class="text-center">เวลาทำ OT</th>
 														<th class="text-center">รายละเอียด</th>
-														<th class="text-center">MachineName</th>
+														<th class="text-center">Machine Number</th>
 														<th class="text-center">เวลาบันทึก</th>
 														<th class="text-center">#</th>
 													</tr>
@@ -101,7 +101,7 @@
 														<th class="text-center">วันที่ทำ OT</th>
 														<th class="text-center">เวลาทำ OT</th>
 														<th class="text-center">รายละเอียด</th>
-														<th class="text-center">MachineName</th>
+														<th class="text-center">Machine Number</th>
 														<th class="text-center">เวลาบันทึก</th>
 														<th class="text-center">#</th>
 													</tr>
@@ -134,7 +134,7 @@
 														<th class="text-center">วันที่ทำ OT</th>
 														<th class="text-center">เวลาทำ OT</th>
 														<th class="text-center">รายละเอียด</th>
-														<th class="text-center">MachineName</th>
+														<th class="text-center">Machine Number</th>
 														<th class="text-center">เวลาบันทึก</th>
 														<th class="text-center">#</th>
 													</tr>

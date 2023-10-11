@@ -112,7 +112,7 @@
 												class="form-control"></textarea>
 										</div>
 										<div class="col-12 col-lg-6">
-											Machine Name<span class="text-danger">*</span>
+											Machine Number<span class="text-danger">*</span>
 											<textarea name="MachineName" id="MachineName" cols="30" rows="5"
 												class="form-control"></textarea>
 										</div>
@@ -289,7 +289,7 @@
 				required: "กรุณาระบุรายละเอียดงาน",
 			},
 			MachineName: {
-				required: "กรุณาระบุ Machine Name",
+				required: "กรุณาระบุ Machine Number",
 			},
 			Sect: {
 				required: "กรุณาระบุ Sect",

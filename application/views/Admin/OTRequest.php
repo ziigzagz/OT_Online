@@ -75,7 +75,7 @@
 															รายละเอียด
 														</th>
 														<th class="text-center">
-															MachineName
+														Machine Number
 														</th>
 
 														<th class="text-center">
@@ -99,7 +99,7 @@
 														<th class="text-center">เวลาทำ OT</th>
 														<th class="text-center">สายรถ</th>
 														<th class="text-center">รายละเอียด</th>
-														<th class="text-center">MachineName</th>
+														<th class="text-center">Machine Number</th>
 														<th class="text-center">เวลาที่ส่งคำร้อง</th>
 														<th class="text-center">สถานะ</th>
 													</tr>
@@ -145,7 +145,7 @@
 															<th class="text-center">เวลาทำ OT</th>
 															<th class="text-center">สายรถ</th>
 															<th class="text-center">รายละเอียด</th>
-															<th class="text-center">MachineName</th>
+															<th class="text-center">Machine Number</th>
 															<th class="text-center">เวลาที่ส่งคำร้อง</th>
 															<th class="text-center">สถานะ</th>
 														</tr>
