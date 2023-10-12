@@ -71,7 +71,7 @@
 											<div class="row">
 												<div class="col">
 													<input type="time" id="StartOT" name="StartOT" class="form-control"
-														min="00:00" max="23:59" onchange="updateEndTime()">
+														min="00:00" max="23:59">
 												</div>
 											</div>
 										</div>
