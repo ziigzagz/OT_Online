@@ -390,7 +390,11 @@
 							title: 'บันทึกสำเร็จ',
 							showConfirmButton: false,
 							timer: 1500
-						})
+						}).then(()=> {
+
+						window.location.reload();
+							// reload
+						});
 						$(`.btn-create`).attr("disabled", false);
 						myModalSending.hide();
 					} else {
