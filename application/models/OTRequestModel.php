@@ -470,7 +470,7 @@ class OTRequestModel extends CI_Model
 				
 			$datetime_now = date("Y-m-d H:i:s");
 			// line body
-			$msg_line .= "วันที่เริ่ม : $DateOT $StartOT \n";
+			$msg_line .= "\nวันที่เริ่ม : $DateOT $StartOT \n";
 			$msg_line .= "ถึง : $DateOT_end $EndOT \n";
 			$msg_line .= "รายละเอียด : $WorkDetail \n";
 			$msg_line .= "เครื่องจักร : $MachineName \n";
