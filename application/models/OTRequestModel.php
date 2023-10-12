@@ -102,6 +102,7 @@ class OTRequestModel extends CI_Model
 		tb_req.ot_starttime,
 		tb_req.ot_endtime,
 		tb_req.ot_date,
+		tb_req.ot_date_end,
 		tb_req.cars_text,
 		tb_req.work_detail,
 		tb_req.machine_name,
@@ -406,6 +407,17 @@ class OTRequestModel extends CI_Model
 		$MachineName = $data['MachineName'];
 		$DataList = $data['DataList'];
 		$Sect = $data['Sect'];
+		// compare time StartOT and EndOT
+		$StartOT_datetime = date("H:i", strtotime($StartOT));
+		$EndOT_datetime = date("H:i", strtotime($EndOT));
+		$StartOT_time = strtotime($StartOT_datetime);
+		$EndOT_time = strtotime($EndOT_datetime);
+		if ($StartOT_time >= $EndOT_time) {
+			// StartOT +1 day
+			$DateOT_end = date("Y-m-d", strtotime($DateOT . "+1 day"));
+		}else{
+			$DateOT_end = $DateOT;
+		}
 
 		// loop insert
 		foreach ($DataList as $key => $value) {
@@ -413,7 +425,7 @@ class OTRequestModel extends CI_Model
 			$employees_name = $value['employees_name'];
 			$cars_id = $value['cars_id'];
 			$cars = $value['cars'];
-			$sql = "INSERT INTO `tb_ot_request` (`id`, `request_key`, `employee_id`, `roles_id`, `ot_starttime`, `ot_endtime`, `ot_date`, `cars_text`, `approved_status`, `work_detail`, `machine_name`, `createdate`) VALUES (NULL, '$GenID', '$employees_id', '$Roles', '$StartOT', '$EndOT', '$DateOT', '$cars', '0', '$WorkDetail', '$MachineName', current_timestamp());";
+			$sql = "INSERT INTO `tb_ot_request` (`id`, `request_key`, `employee_id`, `roles_id`, `ot_starttime`, `ot_endtime`, `ot_date`, `ot_date_end`, `cars_text`, `approved_status`, `work_detail`, `machine_name`, `createdate`) VALUES (NULL, '$GenID', '$employees_id', '$Roles', '$StartOT', '$EndOT', '$DateOT', '$DateOT_end', '$cars', '0', '$WorkDetail', '$MachineName', current_timestamp());";
 			$query = $this->db->query($sql);
 		}
 
