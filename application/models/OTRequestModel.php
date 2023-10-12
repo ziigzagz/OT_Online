@@ -16,9 +16,11 @@ class OTRequestModel extends CI_Model
 		$current_host = "localhost";
 		// ถ้า Reuqest มาจาก localhost ให้ใช้ Token นี้
 		if(strpos($server_host, $current_host) !== false){
+			// Localhost Token
 			$access_token = 'HQwmoDyuUMxZEdajRbY9KD64h0d0brcDi6MWiZioWT8';
 		}else{
-			$access_token = 'HQwmoDyuUMxZEdajRbY9KD64h0d0brcDi6MWiZioWT8';
+			// Production Token
+			$access_token = 'Jv65WQDmyLEOkuplx4TecUrgp275U3nhBjnCipTik5N';
 		}
 
 		// Set the headers for the HTTP request
@@ -476,71 +478,70 @@ class OTRequestModel extends CI_Model
 			$result_linesended = $this->send_line_notify($msg_line);
 
 			// loop body
-			foreach ($DataList as $key => $value) {
-				$employees_id = $value['employees_id'];
-				$employees_name = $value['employees_name'];
-				$cars = $value['cars'];
-				$html .= "<tr>"
-					. "<td>$employees_id</td>"
-					. "<td>$employees_name</td>"
-					. "<td>$Roles</td>"
-					. "<td>$DateOT</td>"
-					. "<td>$StartOT - $EndOT</td>"
-					. "<td>$WorkDetail</td>"
-					. "<td>$MachineName</td>"
-					. "<td>$cars</td>"
-					. "</tr>";
-			}
+			// foreach ($DataList as $key => $value) {
+			// 	$employees_id = $value['employees_id'];
+			// 	$employees_name = $value['employees_name'];
+			// 	$cars = $value['cars'];
+			// 	$html .= "<tr>"
+			// 		. "<td>$employees_id</td>"
+			// 		. "<td>$employees_name</td>"
+			// 		. "<td>$Roles</td>"
+			// 		. "<td>$DateOT</td>"
+			// 		. "<td>$StartOT - $EndOT</td>"
+			// 		. "<td>$WorkDetail</td>"
+			// 		. "<td>$MachineName</td>"
+			// 		. "<td>$cars</td>"
+			// 		. "</tr>";
+			// }
 			
-			$html .= "</tbody>"
-				. "</table>";
+			// $html .= "</tbody>"
+			// 	. "</table>";
 
-			$config = array(
-				'protocol' => 'smtp',
-				'smtp_host' => 'smtp.gmail.com',
-				'smtp_port' => 587,
-				'smtp_user' => 'iffan.h@ku.th',
-				'smtp_pass' => 'Puifai278*',
-				'smtp_crypto' => 'tls',
-				'mailtype' => 'html',
-				'charset' => 'utf-8',
-				'newline' => "\r\n",
-			);
+			// $config = array(
+			// 	'protocol' => 'smtp',
+			// 	'smtp_host' => 'smtp.gmail.com',
+			// 	'smtp_port' => 587,
+			// 	'smtp_user' => 'iffan.h@ku.th',
+			// 	'smtp_pass' => 'Puifai278*',
+			// 	'smtp_crypto' => 'tls',
+			// 	'mailtype' => 'html',
+			// 	'charset' => 'utf-8',
+			// 	'newline' => "\r\n",
+			// );
 
-			$this->load->library('email');
-			$this->email->initialize($config);
-			$this->email->from('iffan.hym@gmail.com', 'รายการขออนุมัติ OT');
-			$server_host = $_SERVER['HTTP_HOST'];
-			$current_host = "localhost";
-			// if request from localhost use this email
-			if(strpos($server_host, $current_host) !== false){
+			// $this->load->library('email');
+			// $this->email->initialize($config);
+			// $this->email->from('iffan.hym@gmail.com', 'รายการขออนุมัติ OT');
+			// $server_host = $_SERVER['HTTP_HOST'];
+			// $current_host = "localhost";
+			// // if request from localhost use this email
+			// if(strpos($server_host, $current_host) !== false){
+			// 	if ($Sect == "EL") {
+			// 		$this->email->to('iffan.hym@gmail.com');
+			// 	} else  if ($Sect == "MC" || $Sect == "US") {
+			// 		$this->email->to('iffan.hym@gmail.com');
+			// 	} else {
+			// 		$this->email->to('iffan.hym@gmail.com');
+			// 	}
+			// } else {
+			// 	if ($Sect == "EL") {
+			// 		$this->email->to('supoj_s@aoyama.co.th');
+			// 	} else  if ($Sect == "MC" || $Sect == "US") {
+			// 		$this->email->to('santi@aoyama.co.th');
+			// 	} else {
+			// 		$this->email->to('iffan.hym@gmail.com');
+			// 	}
+			// }
+			// $res = array(
+			// 	'response_code' => 200,
+			// 	'status' => "success",
+			// 	'sect' => $Sect,
+			// 	'HTTP_HOST' => $_SERVER['HTTP_HOST'],
+			// );
 			
-				if ($Sect == "EL") {
-					$this->email->to('iffan.hym@gmail.com');
-				} else  if ($Sect == "MC" || $Sect == "US") {
-					$this->email->to('iffan.hym@gmail.com');
-				} else {
-					$this->email->to('iffan.hym@gmail.com');
-				}
-			} else {
-				if ($Sect == "EL") {
-					$this->email->to('supoj_s@aoyama.co.th');
-				} else  if ($Sect == "MC" || $Sect == "US") {
-					$this->email->to('santi@aoyama.co.th');
-				} else {
-					$this->email->to('iffan.hym@gmail.com');
-				}
-			}
-			$res = array(
-				'response_code' => 200,
-				'status' => "success",
-				'sect' => $Sect,
-				'HTTP_HOST' => $_SERVER['HTTP_HOST'],
-			);
-			
-			$this->email->subject('รายการขออนุมัติ OT');
-			$this->email->message($html);
-			$this->email->send();
+			// $this->email->subject('รายการขออนุมัติ OT');
+			// $this->email->message($html);
+			// $this->email->send();
 		}
 
 		return $res;

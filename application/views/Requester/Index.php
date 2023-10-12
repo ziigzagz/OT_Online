@@ -29,6 +29,7 @@
 		</div>
 		<div class="content">
 			<div class="container ">
+			<?php include(APPPATH . "views/Nav/BackBar.php"); ?>
 				<div class="row mt-3">
 					<div class="col">
 						<div class="card text-center">
