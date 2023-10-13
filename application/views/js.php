@@ -26,6 +26,7 @@
 <script src="<?php echo base_url() ?>node_modules\pdfmake\build\pdfmake.min.js"></script>
 <script src="<?php echo base_url() ?>node_modules\pdfmake\build\vfs_fonts.js"></script>
 <script src="<?php echo base_url() ?>node_modules\datatables.net-buttons\js\buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
 <script src="<?php echo base_url() ?>node_modules\moment\moment.js"></script>
 
 <script src="<?php echo base_url() ?>node_modules\sugar\dist\sugar.js"></script>

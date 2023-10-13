@@ -47,7 +47,7 @@
 											<table class="table table-striped table-bordered text-center" id="tb_request">
 												<thead>
 													<tr>
-														<th class="text-center"></th>
+
 														<th class="text-center">
 															<div class="form-outline">
 																<input type="text" id="emp_id" class="form-control" />
@@ -81,7 +81,7 @@
 														</th>
 													</tr>
 													<tr>
-														<th class="text-center">EmpName</th>
+
 														<th class="text-center">EmpCode</th>
 														<th class="text-center">dd/mm/yy</th>
 														<th class="text-center">dd/mm/yy</th>
@@ -147,20 +147,32 @@
 						[9, 'desc']
 					],
 					dom: 'Bfrtip',
-					buttons: [
-						'copy', 'csv', 'excel'
-					],
+					buttons: [{
+						extend: 'excel',
+						title: null,
+						text: 'Export to Excel',
+						customize: function(xlsx) {
+							// Remove the first sheet (header row)
+							var sheet = xlsx.xl.worksheets['sheet1.xml'];
+							var data = $('row', sheet);
+
+							// Remove the header row (first row)
+							$(data[0]).remove();
+							// remove column index 8 and 9
+							$('row c ', sheet).each(function() {
+								// console.log($(this).index())
+								if ($(this).index() == 8 || $(this).index() == 9) {
+									$(this).remove();
+								}
+							});
+
+						}
+					}],
 					ajax: {
 						'url': host + 'OTRequest/GetOTRequestAllGroup',
 						'type': 'GET',
 					},
 					columns: [{
-							data: null,
-							render: function(data, type, row) {
-								return `${row.employees_name}`;
-							},
-						},
-						{
 							data: '',
 							render: function(data, type, row) {
 								return `${row.employee_id}`;
