@@ -165,7 +165,6 @@
 									$(this).remove();
 								}
 							});
-
 						}
 					}],
 					ajax: {
@@ -321,44 +320,16 @@
 				// search emp_name
 				$('#emp_id').on('keyup', function() {
 					tb_request
-						.columns(1)
+						.columns(0)
 						.search(this.value)
 						.draw();
 				});
 
-				// search roles
-				$('#Roles').on('change', function() {
-					console.log(this.value)
-					tb_request
-						.columns(1)
-						.search(this.value)
-						.draw();
-				});
-
-				// search cars
-				$('#Cars').on('change', function() {
-					console.log(this.value)
-					tb_request
-						.columns(4)
-						.search(this.value)
-						.draw();
-				});
-
-				// search DateOT
-				$('#DateOT').on('change', function() {
-					console.log(this.value)
-					// format yyyy-mm-dd
-
-					tb_request
-						.columns(2)
-						.search(this.value)
-						.draw();
-				});
 
 				// search DateOTRequest
 				$('#DateOTRequest').on('change', function() {
 					tb_request
-						.columns(9)
+						.columns(8)
 						.search(this.value)
 						.draw();
 				});
@@ -366,7 +337,7 @@
 				// search ApprovedStatus
 				$('#ApprovedStatus').on('change', function() {
 					tb_request
-						.columns(10)
+						.columns(9)
 						.search(this.value)
 						.draw();
 				});
