@@ -43,7 +43,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#EmployeeForm">
+                                        <button type="button" class="btn btn-primary" id="insert_modal_employee">
                                             เพิ่มพนักงาน
                                         </button>
 
@@ -59,27 +59,33 @@
                                                         <div class="modal-body">
                                                             <div class="row">
                                                                 <div class="col">
-                                                                    <input type="text" id="id">
+                                                                    <input type="text" id="id" hidden>
                                                                     <div class="form-outline mt-3">
                                                                         <input class="form-control" type="text" name="employees_id" id="employees_id" required maxlength="6" minlength="6">
                                                                         <label for="employees_id" class="form-label">รหัสพนักงาน:</label>
                                                                     </div>
+                                                                    <label id="employees_id-error" class="error" for="employees_id" style="margin-left: 0px;"></label>
 
                                                                     <div class="form-outline mt-3">
                                                                         <input class="form-control" type="text" name="employees_name" id="employees_name" required minlength="5">
                                                                         <label for="employees_name" class="form-label">ชื่อ - สกุล:</label>
                                                                     </div>
+                                                                    <label id="employees_name-error" class="error" for="employees_name" style="margin-left: 0px;"></label>
 
                                                                     <div class="form-outline mt-3">
                                                                         <select name="employees_sect" id="employees_sect" class="form-select" required>
                                                                             <option value="">เลือก Sects</option>
                                                                         </select>
+                                                                        <!-- <label for=""></label> -->
+                                                                        <label id="employees_section-error" class="error" for="employees_section" style="margin-left: 0px;"></label>
                                                                     </div>
                                                                     <div class="form-outline mt-3">
                                                                         <!-- select cars-->
                                                                         <select name="cars_id" id="cars_id" class="form-select" required>
                                                                             <option value="">เลือก สายรถ</option>
                                                                         </select>
+                                                                        <!-- <label for=""></label> -->
+                                                                        <label id="cars_id-error" class="error" for="cars_id" style="margin-left: 0px;"></label>
                                                                     </div>
 
                                                                 </div>
@@ -341,7 +347,7 @@
                     });
                 }
 
-              
+
 
                 $('#tb_employees tbody').on('click', 'button.btn-danger', function() {
                     // swal comfirm
@@ -399,62 +405,63 @@
 
 
                 $('#insert_employee').on("click", function() {
-                   
-                   // insert_form validate
-                   if (!$('#insert_form').valid()) {
-                       // swal
-                       Swal.fire({
-                           icon: 'error',
-                           title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
-                           showConfirmButton: false,
-                           timer: 1500
-                       })
-                   }
 
-                   let employees_id = document.getElementById('employees_id').value;
-                   let employees_name = document.getElementById('employees_name').value;
-                   let employees_sect = document.getElementById('employees_sect').value;
-                   
-                   let cars_id = document.getElementById('cars_id').value;
-                   let data = {
-                       employees_id: employees_id,
-                       employees_name: employees_name,
-                       employees_sect: employees_sect,
-                       cars_id: cars_id,
-                   };
-                   console.log(data)
+                    // insert_form validate
+                    if (!$('#insert_form').valid()) {
+                        // swal
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        return;
+                    }
 
-                   $.ajax(host + 'Employees/insert_employee', {
-                       data: data,
-                       contentType: "contentType/json",
-                       success: function(response) {
-                           console.log(response)
-                           if (response.response_code == 200) {
-                               Swal.fire({
-                                   icon: 'success',
-                                   title: 'เพิ่มพนักงานสำเร็จ',
-                                   showConfirmButton: false,
-                                   timer: 1500
-                               })
-                               // clode modal
-                               $('#EmployeeForm').modal('hide');
-                               tb_employees.ajax.reload();
-                           } else {
-                               Swal.fire({
-                                   icon: 'error',
-                                   title: response?.response_msg,
-                                   showConfirmButton: false,
-                                   timer: 1500
-                               })
-                           }
-                       },
-                       error: function(err) {
-                           console.log(err)
-                       }
-                   });
-               });
+                    let employees_id = document.getElementById('employees_id').value;
+                    let employees_name = document.getElementById('employees_name').value;
+                    let employees_sect = document.getElementById('employees_sect').value;
 
-                $('#update_employee').on("click", function(){
+                    let cars_id = document.getElementById('cars_id').value;
+                    let data = {
+                        employees_id: employees_id,
+                        employees_name: employees_name,
+                        employees_sect: employees_sect,
+                        cars_id: cars_id,
+                    };
+                    console.log(data)
+
+                    $.ajax(host + 'Employees/insert_employee', {
+                        data: data,
+                        contentType: "contentType/json",
+                        success: function(response) {
+                            console.log(response)
+                            if (response.response_code == 200) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'เพิ่มพนักงานสำเร็จ',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                // clode modal
+                                $('#EmployeeForm').modal('hide');
+                                tb_employees.ajax.reload();
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: response?.response_msg,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        },
+                        error: function(err) {
+                            console.log(err)
+                        }
+                    });
+                });
+
+                $('#update_employee').on("click", function() {
                     let employees_id = document.getElementById('employees_id').value;
                     let employees_name = document.getElementById('employees_name').value;
                     let employees_sect = document.getElementById('employees_sect').value;
@@ -491,15 +498,31 @@
                                     timer: 1500
                                 })
                             }
+                            // reset form
+                            $('#insert_form').trigger("reset");
+                            
                         },
                         error: function(err) {
                             console.log(err)
                         }
+
                     });
 
                 })
 
-                
+                // insert_modal_employee click
+                $('#insert_modal_employee').on("click", function() {
+                    // insert_form validate
+                    //    if some input is emptu
+                    
+                    $('#EmployeeForm').modal('show');
+                    // hide update_employee
+                    $('#update_employee').addClass('d-none');
+                    // show insert_employee
+                    $('#insert_employee').removeClass('d-none');
+                });
+
+
 
                 async function main() {
                     await getSect();
