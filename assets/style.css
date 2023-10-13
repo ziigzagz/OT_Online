@@ -5,6 +5,7 @@
 	--purple: #7533f8;
 	--pink: #e31c79;
 	--green: #14a44d;
+	--yellow: #f2e30f;
 }
 
 * {
@@ -67,6 +68,8 @@ body {
 	color: white;
 	border-radius: 100px;
 }
+
+
 
 .btn-success:hover {
 	border: 1px solid var(--green);

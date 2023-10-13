@@ -24,20 +24,45 @@ class EmployeesModel extends CI_Model
 		return $data;
     }
 
-    public function update_data()
+    public function update_employee()
     {
-        // $this->db->trans_begin();
+        $this->db->trans_begin();
+        // let data = {
+        //     employees_id: employees_id,
+        //     employees_name: employees_name,
+        //     employees_sect: employees_sect,
+        //     cars_id: cars_id,
+        //     id: id,
+        // };
+        $employees_id = $_REQUEST['employees_id'];
+        $employees_name = $_REQUEST['employees_name'];
+        $employees_sect = $_REQUEST['employees_sect'];
+        $cars_id = $_REQUEST['cars_id'];
+        $id = $_REQUEST['id'];
 
-        // $ID = '1';
-        // $sql = "update test_db set name = '123' where id = '$ID'";
-        // $query = $this->db->query($sql);
+        // update employees where id = $id
+        try {
+            //code...
+            $sql = "UPDATE `tb_employees` SET `employees_id` = '$employees_id', `employees_name` = '$employees_name', `employees_sect` = '$employees_sect', `cars_id` = '$cars_id' WHERE `tb_employees`.`id` = $id;";
+            $query = $this->db->query($sql);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
 
-        // if ($this->db->trans_status() === FALSE) {
-        //     $this->db->trans_rollback();
-        // } else {
-        //     $this->db->trans_commit();
-        // }
-        // return $query->result();
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            $res = array(
+                'response_code' => -1
+                
+            );
+        } else {
+            $this->db->trans_commit();
+            $res = array(
+                'response_code' => 200,
+                'response_msg' => 'อัพเดตข้อมูลสำเร็จ'
+            );
+        }
+        return $res;
     }
 
     public function insert_employee()
