@@ -144,7 +144,7 @@
 				var tb_request = $('#tb_request').DataTable({
 					processing: true,
 					order: [
-						[9, 'desc']
+						[8, 'desc']
 					],
 					dom: 'Bfrtip',
 					buttons: [{
@@ -160,7 +160,6 @@
 							$(data[0]).remove();
 							// remove column index 8 and 9
 							$('row c ', sheet).each(function() {
-								// console.log($(this).index())
 								if ($(this).index() == 8 || $(this).index() == 9) {
 									$(this).remove();
 								}
@@ -268,28 +267,11 @@
 					let data = {
 						"request_key": row.request_key
 					}
-					console.log(data)
+					
 					$.ajax(host + 'OTRequest/GetOTRequestWaitGroupByKey', {
 						data: data,
 						contentType: "contentType/json",
 						success: function(response) {
-							// console.log(response)
-							// 	[{
-							//         "id": "23",
-							//         "request_key": "dd407a0c-49c9-11ee-95af-18c04df8b83d",
-							//         "employee_id": "570088",
-							//         "employees_name": "นายเอกชัย ปินะกาพัง",
-							//         "roles": "Repair/BM",
-							//         "ot_starttime": "02:31:00",
-							//         "ot_endtime": "02:32:00",
-							//         "ot_date": "2023-09-20",
-							//         "cars_text": "สะพานสี่ 1",
-							//         "work_detail": "wdw",
-							//         "machine_name": "dwdwd",
-							//         "createdate": "2023-09-03 02:49:44",
-							//         "sects": "MC"
-							//     }
-							//    ]
 							let html = '';
 
 							response.data.forEach(element => {

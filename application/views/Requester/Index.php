@@ -149,16 +149,12 @@
 													<option value="13">รถส่วนตัว</option>
 												</select>
 											</div>
-											<div class="col-12 col-sm-3 ">
+											<div class="col-12 col-sm-3 mt-3">
 												<button type="button" class="btn btn-add-emp form-control"
 													onclick="addToOLList()">เพิ่ม</button>
 											</div>
 											<div class="mt-2"></div>
 										</div>
-									</div>
-
-									<div class="row">
-
 									</div>
 									<hr>
 									<div class="row mt-3">

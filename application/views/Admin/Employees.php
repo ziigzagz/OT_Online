@@ -45,6 +45,7 @@
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-primary" id="insert_modal_employee">
                                             เพิ่มพนักงาน
+
                                         </button>
 
                                         <!-- Modal -->
@@ -52,7 +53,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">เพิ่มพนักงาน</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">เพิ่ม / อัพเดตพนักงาน</h5>
                                                         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <form id="insert_form">
@@ -500,7 +501,7 @@
                             }
                             // reset form
                             $('#insert_form').trigger("reset");
-                            
+
                         },
                         error: function(err) {
                             console.log(err)
