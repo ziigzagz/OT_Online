@@ -37,6 +37,14 @@ class OTRequest extends CI_Controller
 		->set_content_type('application/json')
 		->set_output(json_encode($data));
 	}
+	public function GetOTRequestAllGroup_HRM()
+	{
+		$OTRequestModel = new OTRequestModel();
+		$data = $OTRequestModel->GetOTRequestAllGroup_HRM();
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($data));
+	}
 	public function GetOTRequestWaitGroup()
 	{
 		$OTRequestModel = new OTRequestModel();

@@ -167,7 +167,7 @@
 						}
 					}],
 					ajax: {
-						'url': host + 'OTRequest/GetOTRequestAllGroup',
+						'url': host + 'OTRequest/GetOTRequestAllGroup_HRM',
 						'type': 'GET',
 					},
 					columns: [{
