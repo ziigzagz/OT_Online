@@ -165,7 +165,27 @@
 								}
 							});
 						}
-					}],
+					},
+				{
+					// csv export
+					extend: 'csv',
+					title: null,
+					text: 'Export to CSV',
+					customize: function(csv) {
+						console.log(csv)
+						// remove first row csv
+						var rows = csv.split('\n');
+						rows.splice(0, 1);
+						
+						// remove column index 8 and 9
+						rows.forEach(function(row, index) {
+							var columns = row.split(',');
+							columns.splice(8, 2);
+							rows[index] = columns.join(',');
+						});
+						return rows.join('\n');
+					}
+				}],
 					ajax: {
 						'url': host + 'OTRequest/GetOTRequestAllGroup_HRM',
 						'type': 'GET',

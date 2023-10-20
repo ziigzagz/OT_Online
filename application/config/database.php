@@ -122,7 +122,6 @@ else{
 		'failover' => array(),
 		'save_queries' => TRUE
 	);
-
 }
 
 // $db['db2'] = array(
