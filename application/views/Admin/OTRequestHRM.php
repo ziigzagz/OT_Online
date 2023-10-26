@@ -193,6 +193,7 @@
 					columns: [{
 							data: '',
 							render: function(data, type, row) {
+								console.log(data)
 								return `${row.employee_id}`;
 							},
 						},
@@ -209,8 +210,7 @@
 						{
 							data: '',
 							render: function(data, type, row) {
-
-
+console.log(row)
 								// row.ot_date change format 2023-09-20 to 20/09/23
 								let date = row.ot_date_end.split('-');
 								let new_date = `${date[2]}/${date[1]}/${date[0].substring(2, 4)}`;
@@ -219,7 +219,6 @@
 
 							},
 						},
-
 						{
 							data: null,
 							render: function(data, type, row) {
@@ -323,6 +322,20 @@
 				$('#emp_id').on('keyup', function() {
 					tb_request
 						.columns(0)
+						.search(this.value)
+						.draw();
+				});
+				// search emp_name
+				$('#DateOT').on('change', function() {
+					tb_request
+						.columns(1)
+						.search(this.value)
+						.draw();
+				});
+				// search emp_name
+				$('#DateOT_2').on('change', function() {
+					tb_request
+						.columns(2)
 						.search(this.value)
 						.draw();
 				});
