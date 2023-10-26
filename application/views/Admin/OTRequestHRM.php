@@ -148,44 +148,56 @@
 					],
 					dom: 'Bfrtip',
 					buttons: [{
-						extend: 'excel',
-						title: null,
-						text: 'Export to Excel',
-						customize: function(xlsx) {
-							// Remove the first sheet (header row)
-							var sheet = xlsx.xl.worksheets['sheet1.xml'];
-							var data = $('row', sheet);
+							extend: 'excel',
+							title: null,
+							text: 'Export to Excel',
+							customize: function(xlsx) {
+								// Remove the first sheet (header row)
+								var sheet = xlsx.xl.worksheets['sheet1.xml'];
+								var data = $('row', sheet);
 
-							// Remove the header row (first row)
-							$(data[0]).remove();
-							// remove column index 8 and 9
-							$('row c ', sheet).each(function() {
-								if ($(this).index() == 8 || $(this).index() == 9) {
-									$(this).remove();
-								}
-							});
+								// Remove the header row (first row)
+								$(data[0]).remove();
+								// remove column index 8 and 9
+								$('row c ', sheet).each(function() {
+									if ($(this).index() == 8 || $(this).index() == 9) {
+										$(this).remove();
+									}
+								});
+							}
+						},
+						{
+							// csv export
+							extend: 'csv',
+							title: null,
+							text: 'Export to CSV',
+							customize: function(csv) {
+								// remove first row csv
+								var rows = csv.split('\n');
+								rows.splice(0, 1);
+
+								// remove column index 8 and 9 and add empty column to first column
+								rows.forEach(function(row, index) {
+									var text_replace = row.replaceAll('"', '');
+									// console.log(text_replace)
+									var text_split = text_replace.split(',');
+									// console.log(text_split)
+
+									text_split.splice(8, 2);
+									text_split[5] = '01'
+
+									// console.log(text_split)
+
+									// var columns = row.split(',');
+									// columns.splice(8, 2);
+
+									rows[index] = ","+text_split.join(',');
+								});
+								// console.log(rows);
+								return rows.join('\n');
+							}
 						}
-					},
-				{
-					// csv export
-					extend: 'csv',
-					title: null,
-					text: 'Export to CSV',
-					customize: function(csv) {
-						console.log(csv)
-						// remove first row csv
-						var rows = csv.split('\n');
-						rows.splice(0, 1);
-						
-						// remove column index 8 and 9
-						rows.forEach(function(row, index) {
-							var columns = row.split(',');
-							columns.splice(8, 2);
-							rows[index] = columns.join(',');
-						});
-						return rows.join('\n');
-					}
-				}],
+					],
 					ajax: {
 						'url': host + 'OTRequest/GetOTRequestAllGroup_HRM',
 						'type': 'GET',
@@ -193,7 +205,7 @@
 					columns: [{
 							data: '',
 							render: function(data, type, row) {
-								console.log(data)
+								// console.log(data)
 								return `${row.employee_id}`;
 							},
 						},
@@ -210,7 +222,6 @@
 						{
 							data: '',
 							render: function(data, type, row) {
-console.log(row)
 								// row.ot_date change format 2023-09-20 to 20/09/23
 								let date = row.ot_date_end.split('-');
 								let new_date = `${date[2]}/${date[1]}/${date[0].substring(2, 4)}`;
@@ -286,7 +297,7 @@ console.log(row)
 					let data = {
 						"request_key": row.request_key
 					}
-					
+
 					$.ajax(host + 'OTRequest/GetOTRequestWaitGroupByKey', {
 						data: data,
 						contentType: "contentType/json",
