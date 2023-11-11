@@ -39,6 +39,8 @@
 <script src="<?php echo base_url() ?>node_modules\highcharts\modules\export-data.js"></script>
 <script src="<?php echo base_url() ?>node_modules\highcharts\modules\accessibility.js"></script>
 
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js" integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

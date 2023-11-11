@@ -26,7 +26,7 @@
 				<div class="row mt-3">
 					<div class="col">
 						<div class="card text-center">
-							<div class="card-body">
+							<div class="card-body p-1">
 								<form action id="InsertOTForm">
 									<div class="row py-3">
 										<div class="col text-center">
@@ -144,11 +144,15 @@
 									<div id="Emp-list-panel">
 										<div class="row d-flex justify-content-center align-items-center">
 											<div class="col-12 col-sm-3  text-start mt-2">
-												<input type="text" name="EmpID" id="EmpID" maxlength="6" minlength="6" class="form-control" onkeyup="fetchEmp()" placeholder="รหัสพนักงาน" readonly>
+
+												<div class="ui-widget d-flex">
+													<input type="text" name="EmpID" id="EmpID" placeholder="รหัสพนักงาน" class="form-control" onchange="fetchEmp()">
+													<button type="button" class="btn btn-danger" onclick="clearEmpID()">x</button>
+												</div>
+
+												<!-- <input type="text" name="EmpID" id="EmpID" maxlength="6" minlength="6" class="form-control" onkeyup="fetchEmp()" placeholder="รหัสพนักงาน" readonly> -->
 											</div>
-											<div class="col-12 col-sm-3  text-start mt-2">
-												<input readonly type="text" name="EmpName" id="EmpName" class="form-control" placeholder="ชื่อ" readonly>
-											</div>
+
 											<div class="col-12 col-sm-3 text-start mt-2">
 												<select name="CarTravel" id="CarTravel" class="form-select" readonly>
 													<option value="13">รถส่วนตัว</option>
@@ -219,6 +223,7 @@
 	<!-- MDB -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 	<script>
+		var SrcData = {}
 		var EmpList = {}
 		var RolesList = {}
 		var DataList = {}
@@ -230,6 +235,35 @@
 		let day = ((currentDate.getDate())).toString().padStart(2, '0')
 		let month = ((currentDate.getMonth()) + 1).toString().padStart(2, '0');
 		let year = currentDate.getFullYear() % 100;
+
+		var availableTags = {};
+
+		var atcp = $("#EmpID").autocomplete({
+			source: availableTags,
+			minLength: 0,
+			select: function(event, ui) {
+				var emp_id = ui.item.value.split(":")[0];
+				if (EmpList[emp_id].cars_id != personal_cars_id) {
+					var list = document.getElementById(`CarTravel`);
+					var option = document.createElement("option");
+					option.value = EmpList[emp_id].cars_id;
+					option.text = EmpList[emp_id].cars;
+					// check duplicate
+					if ($(`#CarTravel option[value=${EmpList[emp_id].cars_id}]`).length == 0)
+						list.appendChild(option);
+					// select last option
+					$(`#CarTravel`).val(EmpList[emp_id].cars_id);
+				} else {
+					$(`#CarTravel option:not(:first)`).remove();
+					$(`#CarTravel`).val(personal_cars_id);
+				}
+
+				// log(ui.item ?
+				// 	"Selected: " + ui.item.value + ", geonameId: " + ui.item.id :
+				// 	"Nothing selected, input was " + this.value);
+			}
+		});
+
 		$("#DateOT").datepicker({
 			format: 'dd/mm/yyyy',
 			startDate: "-1d",
@@ -306,48 +340,47 @@
 			},
 		}
 
-		function shifthour_select(){
+		function shifthour_select() {
 			var shift = $(`#shift`).val();
 			var hour = $(`#hour`).val();
-			if(shift == "day"){
-				if(hour == "2_45"){
+			if (shift == "day") {
+				if (hour == "2_45") {
 					$(`#StartOT`).val("17:15");
 					$(`#EndOT`).val("20:00");
-				}else if(hour == "8"){
+				} else if (hour == "8") {
 					$(`#StartOT`).val("08:00");
 					$(`#EndOT`).val("17:00");
-				}else if(hour == "10_45"){
+				} else if (hour == "10_45") {
 					$(`#StartOT`).val("08:00");
 					$(`#EndOT`).val("20:00");
-				}else if(hour == "other"){
+				} else if (hour == "other") {
 					$(`#StartOT`).val("");
 					$(`#EndOT`).val("");
 				}
-			}
-			else if(shift == "night"){
-				if(hour == "2_45"){
+			} else if (shift == "night") {
+				if (hour == "2_45") {
 					$(`#StartOT`).val("05:15");
 					$(`#EndOT`).val("08:00");
-				}else if(hour == "8"){
+				} else if (hour == "8") {
 					$(`#StartOT`).val("20:00");
 					$(`#EndOT`).val("05:00");
-				}else if(hour == "10_45"){
+				} else if (hour == "10_45") {
 					$(`#StartOT`).val("20:00");
 					$(`#EndOT`).val("08:00");
-				}else if(hour == "other"){
+				} else if (hour == "other") {
 					$(`#StartOT`).val("");
 					$(`#EndOT`).val("");
 				}
 			}
-			if(hour != "other"){
+			if (hour != "other") {
 				$(`#StartOT`).attr('readonly', hour != "other");
 				$(`#EndOT`).attr('readonly', hour != "other");
-			}else{
+			} else {
 				$(`#StartOT`).attr('readonly', false);
 				$(`#EndOT`).attr('readonly', false);
 			}
 		}
-		
+
 
 		function updateEndTime() {
 			const startOTInput = document.getElementById('StartOT');
@@ -432,7 +465,7 @@
 						$(`#Sect option:not(:first)`).remove();
 						// clear input
 						$(`#EmpID`).val("")
-						$(`#EmpName`).val("")
+
 						$(`#CarTravel option:not(:first)`).remove();
 						// focus input
 						$(`#EmpID`).focus()
@@ -462,54 +495,8 @@
 		function fetchEmp() {
 			var emp_id = $(`#EmpID`).val();
 			var emp_sect = $(`#Sect`).val();
-			if (emp_id.trim().length == 6) {
-				if (EmpList.hasOwnProperty(emp_id) && EmpList[emp_id].sects == emp_sect) {
-					$(`#EmpName`).val(EmpList[emp_id].employees_name)
-					// add option CarTravel
-					if (EmpList[emp_id].cars_id != personal_cars_id) {
-						var list = document.getElementById(`CarTravel`);
-						var option = document.createElement("option");
-						option.value = EmpList[emp_id].cars_id;
-						option.text = EmpList[emp_id].cars;
-						// check duplicate
-						if ($(`#CarTravel option[value=${EmpList[emp_id].cars_id}]`).length == 0)
-							list.appendChild(option);
-						// select last option
-						$(`#CarTravel`).val(EmpList[emp_id].cars_id);
-					}
-				} else {
-					// swal
-					Swal.fire({
-						icon: 'error',
-						title: 'ไม่พบข้อมูลพนักงาน หรือ Sect ไม่ถูกต้อง',
-						html: `กรุณาติดต่อ HR`,
-						showConfirmButton: false,
-						timer: 1500
-					}).then(() => {
-						// focus input
-						$(`#EmpID`).focus()
-					})
-					$(`#EmpName`).val("")
-					// remove all option except first option
-					$(`#CarTravel option:not(:first)`).remove();
-				}
-			} else {
-				$(`#EmpName`).val("")
-				// remove all option except first option
-				$(`#CarTravel option:not(:first)`).remove();
-			}
-			// } else {
-			// 	Swal.fire({
-			// 		icon: 'error',
-			// 		title: 'ไม่พบข้อมูลพนักงาน',
-			// 		showConfirmButton: false,
-			// 		timer: 1500
-			// 	}).then(() => {
-			// 		// focus input
-			// 		$(`#EmpID`).focus()
-			// 	})
-			// 	$(`#EmpName`).val("")
-			// }
+			console.log("fetchEmp")
+
 		}
 
 		function GenerateID() {
@@ -555,7 +542,14 @@
 				success: function(response) {
 					console.log(response)
 					response.forEach(element => {
-						EmpList[element.employees_id] = element
+						if (SrcData.hasOwnProperty(element.sects) == false) {
+							SrcData[element.sects] = [element]
+							availableTags[element.sects] = [`${element.employees_id}:${element.employees_name}`]
+						} else {
+							SrcData[element.sects].push(element)
+							availableTags[element.sects].push(`${element.employees_id}:${element.employees_name}`)
+						}
+						EmpList[element.employees_id] = element;
 					});
 					// add option sect and not duplicate
 					var list = document.getElementById('Sect');
@@ -577,9 +571,12 @@
 		function addToOLList() {
 			// fetchEmp()
 			let template = ``;
-			// for (var index = 0; index < count; ++index) {
-			let emp_id = $(`#EmpID`).val();
-			let emp_name = $(`#EmpName`).val();
+			let item = $(`#EmpID`).val().split(":")
+			if (item.length == 0) {
+				return;
+			}
+			let emp_id = $(`#EmpID`).val().split(":")[0];
+			let emp_name = $(`#EmpID`).val().split(":")[1];
 			let car_travel = $(`#CarTravel`).val();
 			console.log(car_travel);
 			console.log($(`#CarTravel option:selected`).text());
@@ -599,7 +596,7 @@
 			$("#ol-emp-list").append(template)
 			// // clear input
 			$(`#EmpID`).val("")
-			$(`#EmpName`).val("")
+
 			$(`#CarTravel option:not(:first)`).remove();
 			// focus input
 			$(`#EmpID`).focus()
@@ -608,7 +605,6 @@
 		function removeFromOLList(id) {
 			$(`#li-${id}`).remove();
 			delete DataList[id];
-
 		}
 
 		function clearEmplistpanel() {
@@ -618,13 +614,16 @@
 			// if not select sect set readonly Emp-list-panel
 			if ($(`#Sect`).val().length == 0) {
 				$('#EmpID').attr('readonly', true);
-				$('#EmpName').attr('readonly', true);
 				$('#CarTravel').attr('readonly', true);
 			} else {
 				$('#EmpID').attr('readonly', false);
-				// $('#EmpName').attr('readonly', false);
 				$('#CarTravel').attr('readonly', false);
 			}
+			$("#EmpID").autocomplete( "option", "source", availableTags[$(`#Sect`).val()] );
+		}
+		
+		function clearEmpID(){
+			$(`#EmpID`).val("")
 		}
 
 		async function Main() {
