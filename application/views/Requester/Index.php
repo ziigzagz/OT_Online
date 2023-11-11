@@ -14,22 +14,15 @@
 <body>
 	<div class="">
 		<div class="custom-shape-divider-top-1693803862">
-			<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-				preserveAspectRatio="none">
-				<path
-					d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-					opacity=".25" class="shape-fill"></path>
-				<path
-					d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
-					opacity=".5" class="shape-fill"></path>
-				<path
-					d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
-					class="shape-fill"></path>
+			<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+				<path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+				<path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+				<path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
 			</svg>
 		</div>
 		<div class="content">
 			<div class="container ">
-			<?php include(APPPATH . "views/Nav/BackBar.php"); ?>
+				<?php include(APPPATH . "views/Nav/BackBar.php"); ?>
 				<div class="row mt-3">
 					<div class="col">
 						<div class="card text-center">
@@ -38,8 +31,7 @@
 									<div class="row py-3">
 										<div class="col text-center">
 											<h1>
-												<b
-													class="d-flex justify-content-center mx-auto text-center flex-column">
+												<b class="d-flex justify-content-center mx-auto text-center flex-column">
 													<div class="title-blue">
 														แบบฟอร์ม
 													</div>
@@ -59,9 +51,29 @@
 									<div class="row mt-3">
 										<div class="col-12 col-lg-4 text-start">
 											วันที่ทำ OT <span class="text-danger">*</span>
-											<input type="text" name="DateOT" id="DateOT" size="30" class="form-control"
-												placeholder="ระบุวันที่ทำ OT" readonly>
+											<input type="text" name="DateOT" id="DateOT" size="30" class="form-control" placeholder="ระบุวันที่ทำ OT" readonly>
 										</div>
+										<div class="col-12 col-lg-4 text-start">
+											Shift <span class="text-danger">*</span>
+											<select name="shift" id="shift" class="form-select" onchange="shifthour_select()">
+												<option value="">ระบุกะ</option>
+												<option value="day">DAY</option>
+												<option value="night">NIGHT</option>
+											</select>
+										</div>
+										<div class="col-12 col-lg-4 text-start">
+											จำนวนชั่วโมง <span class="text-danger">*</span>
+											<select name="hour" id="hour" class="form-select" onchange="shifthour_select()">
+												<option value="">ระบุจำนวนชั่วโมง</option>
+												<option value="2_45">2.45</option>
+												<option value="8">8</option>
+												<option value="10_45">10.45</option>
+												<option value="other">เลือกแก้ไขเวลาเอง</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="row" id="">
 										<div class="col-12 col-lg-4 text-start">
 											<div class="row">
 												<div class="col-6">
@@ -70,8 +82,7 @@
 											</div>
 											<div class="row">
 												<div class="col">
-													<input type="time" id="StartOT" name="StartOT" class="form-control"
-														min="00:00" max="23:59">
+													<input type="time" id="StartOT" name="StartOT" class="form-control" readonly>
 												</div>
 											</div>
 										</div>
@@ -83,12 +94,12 @@
 											</div>
 											<div class="row">
 												<div class="col">
-													<input type="time" id="EndOT" name="EndOT" class="form-control">
+													<input type="time" id="EndOT" name="EndOT" class="form-control" readonly>
 												</div>
 											</div>
 										</div>
-
 									</div>
+
 									<div class="row mt-3">
 
 										<div class="col-12 col-lg-6 text-start">
@@ -99,8 +110,7 @@
 										</div>
 										<div class="col-12 col-lg-6 text-start">
 											Sect <span class="text-danger">*</span>
-											<select name="Sect" id="Sect" class="form-select"
-												onchange="clearEmplistpanel()">
+											<select name="Sect" id="Sect" class="form-select" onchange="clearEmplistpanel()">
 												<option value>-- เลือก Sect --</option>
 											</select>
 										</div>
@@ -109,13 +119,11 @@
 									<div class="row mt-3">
 										<div class="col-12 col-lg-6">
 											รายละเอียดงานที่ปฏิบัติ <span class="text-danger">*</span>
-											<textarea name="WorkDetail" id="WorkDetail" cols="30" rows="5"
-												class="form-control"></textarea>
+											<textarea name="WorkDetail" id="WorkDetail" cols="30" rows="5" class="form-control"></textarea>
 										</div>
 										<div class="col-12 col-lg-6">
 											Machine Number<span class="text-danger">*</span>
-											<textarea name="MachineName" id="MachineName" cols="30" rows="5"
-												class="form-control"></textarea>
+											<textarea name="MachineName" id="MachineName" cols="30" rows="5" class="form-control"></textarea>
 										</div>
 									</div>
 									<div class="row mt-3">
@@ -136,13 +144,10 @@
 									<div id="Emp-list-panel">
 										<div class="row d-flex justify-content-center align-items-center">
 											<div class="col-12 col-sm-3  text-start mt-2">
-												<input type="text" name="EmpID" id="EmpID" maxlength="6" minlength="6"
-													class="form-control" onkeyup="fetchEmp()" placeholder="รหัสพนักงาน"
-													readonly>
+												<input type="text" name="EmpID" id="EmpID" maxlength="6" minlength="6" class="form-control" onkeyup="fetchEmp()" placeholder="รหัสพนักงาน" readonly>
 											</div>
 											<div class="col-12 col-sm-3  text-start mt-2">
-												<input readonly type="text" name="EmpName" id="EmpName"
-													class="form-control" placeholder="ชื่อ" readonly>
+												<input readonly type="text" name="EmpName" id="EmpName" class="form-control" placeholder="ชื่อ" readonly>
 											</div>
 											<div class="col-12 col-sm-3 text-start mt-2">
 												<select name="CarTravel" id="CarTravel" class="form-select" readonly>
@@ -150,8 +155,7 @@
 												</select>
 											</div>
 											<div class="col-12 col-sm-3 mt-3">
-												<button type="button" class="btn btn-add-emp form-control"
-													onclick="addToOLList()">เพิ่ม</button>
+												<button type="button" class="btn btn-add-emp form-control" onclick="addToOLList()">เพิ่ม</button>
 											</div>
 											<div class="mt-2"></div>
 										</div>
@@ -159,8 +163,7 @@
 									<hr>
 									<div class="row mt-3">
 										<div class="col text-center">
-											<button type="button" class="btn btn-create"
-												onclick="CheckForm()">บันทึก</button>
+											<button type="button" class="btn btn-create" onclick="CheckForm()">บันทึก</button>
 											<!-- <button type="reset" class="btn btn-clear">ล้างข้อมูล</button> -->
 										</div>
 									</div>
@@ -171,8 +174,7 @@
 				</div>
 
 				<!-- Modal -->
-				<div class="modal fade" id="myModalSending" tabindex="-1" role="dialog" aria-labelledby="myModalSending"
-					aria-hidden="true">
+				<div class="modal fade" id="myModalSending" tabindex="-1" role="dialog" aria-labelledby="myModalSending" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-body">
@@ -191,8 +193,7 @@
 					</div>
 				</div>
 				<!-- Modal -->
-				<div class="modal fade" id="myModalSending" tabindex="-1" role="dialog" aria-labelledby="myModalSending"
-					aria-hidden="true">
+				<div class="modal fade" id="myModalSending" tabindex="-1" role="dialog" aria-labelledby="myModalSending" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-body">
@@ -263,6 +264,12 @@
 			Sect: {
 				required: true,
 			},
+			shift: {
+				required: true,
+			},
+			hour: {
+				required: true,
+			},
 		}
 
 		const Messages = {
@@ -291,7 +298,56 @@
 			Sect: {
 				required: "กรุณาระบุ Sect",
 			},
+			shift: {
+				required: "กรุณาระบุกะ",
+			},
+			hour: {
+				required: "กรุณาระบุจำนวนชั่วโมง",
+			},
 		}
+
+		function shifthour_select(){
+			var shift = $(`#shift`).val();
+			var hour = $(`#hour`).val();
+			if(shift == "day"){
+				if(hour == "2_45"){
+					$(`#StartOT`).val("17:15");
+					$(`#EndOT`).val("20:00");
+				}else if(hour == "8"){
+					$(`#StartOT`).val("08:00");
+					$(`#EndOT`).val("17:00");
+				}else if(hour == "10_45"){
+					$(`#StartOT`).val("08:00");
+					$(`#EndOT`).val("20:00");
+				}else if(hour == "other"){
+					$(`#StartOT`).val("");
+					$(`#EndOT`).val("");
+				}
+			}
+			else if(shift == "night"){
+				if(hour == "2_45"){
+					$(`#StartOT`).val("05:15");
+					$(`#EndOT`).val("08:00");
+				}else if(hour == "8"){
+					$(`#StartOT`).val("20:00");
+					$(`#EndOT`).val("05:00");
+				}else if(hour == "10_45"){
+					$(`#StartOT`).val("20:00");
+					$(`#EndOT`).val("08:00");
+				}else if(hour == "other"){
+					$(`#StartOT`).val("");
+					$(`#EndOT`).val("");
+				}
+			}
+			if(hour != "other"){
+				$(`#StartOT`).attr('readonly', hour != "other");
+				$(`#EndOT`).attr('readonly', hour != "other");
+			}else{
+				$(`#StartOT`).attr('readonly', false);
+				$(`#EndOT`).attr('readonly', false);
+			}
+		}
+		
 
 		function updateEndTime() {
 			const startOTInput = document.getElementById('StartOT');
@@ -352,7 +408,7 @@
 				type: "POST",
 				dataType: "json",
 				data: data,
-				success: function (response) {
+				success: function(response) {
 					console.log(response)
 					if (response.status == "success") {
 						// clear form
@@ -386,9 +442,9 @@
 							title: 'บันทึกสำเร็จ',
 							showConfirmButton: false,
 							timer: 1500
-						}).then(()=> {
+						}).then(() => {
 
-						window.location.reload();
+							window.location.reload();
 							// reload
 						});
 						$(`.btn-create`).attr("disabled", false);
@@ -397,7 +453,7 @@
 
 					}
 				},
-				error: function (jqXHR, textStatus, errorThrown) {
+				error: function(jqXHR, textStatus, errorThrown) {
 					console.log(textStatus, errorThrown);
 				}
 			});
@@ -437,7 +493,7 @@
 					// remove all option except first option
 					$(`#CarTravel option:not(:first)`).remove();
 				}
-			}else{
+			} else {
 				$(`#EmpName`).val("")
 				// remove all option except first option
 				$(`#CarTravel option:not(:first)`).remove();
@@ -472,7 +528,7 @@
 				url: "<?php echo base_url(); ?>Roles/getRoles",
 				type: "POST",
 				dataType: "json",
-				success: function (response) {
+				success: function(response) {
 					// console.log(response)
 					roles = response;
 					var list = document.getElementById('Roles');
@@ -496,7 +552,7 @@
 				url: "<?php echo base_url(); ?>Employees/getEmployees",
 				type: "POST",
 				dataType: "json",
-				success: function (response) {
+				success: function(response) {
 					console.log(response)
 					response.forEach(element => {
 						EmpList[element.employees_id] = element
