@@ -518,15 +518,14 @@
 							var tb_emp_list = '';
 							value.Employee_List.forEach(element => {
 								// appedn to id=emp_list
-								tb_emp_list += `<tr>
-												<td>${element.employees_id}</td>
-												<td>${element.employees_name}</td>
-												<td>${element.cars}</td>
-												<td>
-												<button class="btn btn-success" onclick="ApprovedByID(${element.id})"><i class="fa-solid fa-circle-check"></i></button>
-												<button class="btn btn-danger" onclick="RejectByID(${element.id})"><i class="fa-solid fa-circle-xmark"></i></button>
-												</tr>`;
-							});
+								tb_emp_list += `<div class="row">
+													<div class="col">
+														${element.employees_id} - ${element.employees_name} <br> ${element.cars}
+														<button class="btn btn-success" onclick="ApprovedByID(${element.req_id})"><i class="fa-solid fa-circle-check"></i></button>
+														<button class="btn btn-danger" onclick="RejectByID(${element.req_id})"><i class="fa-solid fa-circle-xmark"></i></button>
+													</div>
+												</div><hr>`;
+							});	
 							html += `<div class="row mt-5">
 												<div class="col">
 													<div class="row">

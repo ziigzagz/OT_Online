@@ -178,7 +178,7 @@ class OTRequestModel extends CI_Model
 		// 	),
 		// );
 		// $sect = $_SESSION['sect'];
-		$sql = "SELECT tb_req.`request_key`, tb_roles.roles, tb_req.ot_starttime, tb_req.ot_endtime, tb_req.ot_date, tb_req.ot_date_end, tb_req.work_detail, tb_req.machine_name, tb_req.createdate, tb_emp.employees_id, tb_emp.employees_name, tb_req.cars_text,tb_sect.sects FROM `tb_ot_request` as tb_req INNER JOIN `tb_employees` as tb_emp ON tb_req.employee_id = tb_emp.employees_id INNER JOIN `tb_roles` as tb_roles ON tb_req.roles_id = tb_roles.id INNER JOIN `tb_sect` as tb_sect ON tb_emp.employees_sect = tb_sect.id where `approved_status` = 0 and employees_sect in (1);";
+		$sql = "SELECT tb_req.id, tb_req.`request_key`, tb_roles.roles, tb_req.ot_starttime, tb_req.ot_endtime, tb_req.ot_date, tb_req.ot_date_end, tb_req.work_detail, tb_req.machine_name, tb_req.createdate, tb_emp.employees_id, tb_emp.employees_name, tb_req.cars_text,tb_sect.sects FROM `tb_ot_request` as tb_req INNER JOIN `tb_employees` as tb_emp ON tb_req.employee_id = tb_emp.employees_id INNER JOIN `tb_roles` as tb_roles ON tb_req.roles_id = tb_roles.id INNER JOIN `tb_sect` as tb_sect ON tb_emp.employees_sect = tb_sect.id where `approved_status` = 0 and employees_sect in (1);";
 		$query = $this->db->query($sql);
 		$res = $query->result();
 		
@@ -190,6 +190,7 @@ class OTRequestModel extends CI_Model
 			$model['Wait'][$value->request_key]['Roles'] = $value->roles;
 			$model['Wait'][$value->request_key]['Machine'] = $value->machine_name;
 			$model['Wait'][$value->request_key]['Employee_List'][] = array(
+				"req_id" => $value->id,
 				"employees_id" => $value->employees_id,
 				"employees_name" => $value->employees_name,
 				"cars" => $value->cars_text,
