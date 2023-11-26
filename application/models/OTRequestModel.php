@@ -440,6 +440,16 @@ class OTRequestModel extends CI_Model
 		$MachineName = $data['MachineName'];
 		$DataList = $data['DataList'];
 		$Sect = $data['Sect'];
+
+		// if empty data
+		if ( $Roles == "" || $StartOT == "" || $EndOT == "" || $DateOT == "" || $WorkDetail == "" || $MachineName == "" || $Sect == "") {
+			$res = array(
+				'response_code' => -1,
+				'status' => "fail",
+			);
+			return $res;
+		}
+
 		// compare time StartOT and EndOT
 		$StartOT_datetime = date("H:i", strtotime($StartOT));
 		$EndOT_datetime = date("H:i", strtotime($EndOT));

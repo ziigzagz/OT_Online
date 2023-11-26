@@ -483,6 +483,15 @@
 						$(`.btn-create`).attr("disabled", false);
 						myModalSending.hide();
 					} else {
+						Swal.fire({
+							icon: 'error',
+							title: 'บันทึกไม่สำเร็จ',
+							showConfirmButton: false,
+							timer: 3000
+						}).then(() => {
+							window.location.reload();
+							// reload
+						});
 
 					}
 				},
