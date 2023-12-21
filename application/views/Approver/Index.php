@@ -147,36 +147,53 @@
 									<div class="nav nav-tabs justify-content-center bg-light" id="nav-tab" role="tablist">
 										<button class="nav-link active fs-22" id="nav-wait-tab" data-bs-toggle="tab" data-bs-target="#nav-wait" type="button" role="tab" aria-controls="nav-wait" aria-selected="true">รออนุมัติ
 											<span class="badge rounded-pill bg-danger" id="count_wait">?</span>
-
 										</button>
 										<button class="nav-link" id="nav-approved-tab" data-bs-toggle="tab" data-bs-target="#nav-approved" type="button" role="tab" aria-controls="nav-approved" aria-selected="false">อนุมัติแล้ว</button>
 										<button class="nav-link" id="nav-reject-tab" data-bs-toggle="tab" data-bs-target="#nav-reject" type="button" role="tab" aria-controls="nav-reject" aria-selected="false">ไม่อนุมัติ</button>
 									</div>
 								</nav>
-								<div class="tab-content mt-3" id="nav-tabContent">
-									<div class="tab-pane fade show active" id="nav-wait" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-										<!-- <div class="row">
-											<div class="col px-5">
-												<select name="" id="" class="form-control">
-													<option value="">ทั้งหมด</option>
-													<option value="">วันนี้</option>
-													<option value="">เดือนนี้</option>
-													<option value="">ปีนี้</option>
-												</select>
-												<button class="btn btn-warning">Bulk Action</button>
-											</div>
-										</div> -->
-										
 
-									</div>
-									<div class="tab-pane fade" id="nav-approved" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-										อนุมัติแล้ว
-									</div>
-									<div class="tab-pane fade" id="nav-reject" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-										ไม่อนุมัติ
-									</div>
-								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-content mt-3" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="nav-wait" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+					</div>
+					<div class="tab-pane fade" id="nav-approved" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered text-center" id="tb_approved">
+								<thead>
+									<tr>
+										<th class="text-center">หน้าที่รับผิดชอบ</th>
+										<th class="text-center">วันที่ทำ OT</th>
+										<th class="text-center">เวลาทำ OT</th>
+										<th class="text-center">รายละเอียด</th>
+										<th class="text-center">Machine Number</th>
+										<th class="text-center">เวลาบันทึก</th>
+										<th class="text-center">#</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="nav-reject" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered text-center" id="tb_rejected">
+								<thead>
+									<tr>
+										<th class="text-center">หน้าที่รับผิดชอบ</th>
+										<th class="text-center">วันที่ทำ OT</th>
+										<th class="text-center">เวลาทำ OT</th>
+										<th class="text-center">รายละเอียด</th>
+										<th class="text-center">Machine Number</th>
+										<th class="text-center">เวลาบันทึก</th>
+										<th class="text-center">#</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -232,90 +249,90 @@
 			// 		}
 			// 	],
 			// });
-			// var table_approved = $('#tb_approved').DataTable({
-			// 	processing: true,
-			// 	order: [
-			// 		[5, 'desc']
-			// 	],
-			// 	ajax: {
-			// 		'url': host + 'OTRequest/GetOTRequestApprovedGroup',
-			// 		'type': 'GET',
-			// 	},
-			// 	columns: [{
-			// 			data: 'roles'
-			// 		},
-			// 		{
-			// 			data: null,
-			// 			render: function(data, type, row) {
-			// 				return `${row.ot_date}`;
+			var table_approved = $('#tb_approved').DataTable({
+				processing: true,
+				order: [
+					[5, 'desc']
+				],
+				ajax: {
+					'url': host + 'OTRequest/GetOTRequestApprovedGroup',
+					'type': 'GET',
+				},
+				columns: [{
+						data: 'roles'
+					},
+					{
+						data: null,
+						render: function(data, type, row) {
+							return `${row.ot_date}`;
 
-			// 			},
-			// 		},
-			// 		{
-			// 			data: null,
-			// 			render: function(data, type, row) {
-			// 				return `${row.ot_starttime} - ${row.ot_endtime}`;
+						},
+					},
+					{
+						data: null,
+						render: function(data, type, row) {
+							return `${row.ot_starttime} - ${row.ot_endtime}`;
 
-			// 			},
-			// 		},
-			// 		{
-			// 			data: "work_detail",
-			// 		},
-			// 		{
-			// 			data: "machine_name",
-			// 		},
-			// 		{
-			// 			data: "createdate",
-			// 		},
-			// 		{
-			// 			targets: -1,
-			// 			data: null,
-			// 			defaultContent: `<button class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>`,
-			// 		}
-			// 	],
-			// });
-			// var table_rejected = $('#tb_rejected').DataTable({
-			// 	processing: true,
-			// 	order: [
-			// 		[5, 'desc']
-			// 	],
-			// 	ajax: {
-			// 		'url': host + 'OTRequest/GetOTRequestRejectedGroup',
-			// 		'type': 'GET',
-			// 	},
-			// 	columns: [{
-			// 			data: 'roles'
-			// 		},
-			// 		{
-			// 			data: null,
-			// 			render: function(data, type, row) {
-			// 				return `${row.ot_date}`;
+						},
+					},
+					{
+						data: "work_detail",
+					},
+					{
+						data: "machine_name",
+					},
+					{
+						data: "createdate",
+					},
+					{
+						targets: -1,
+						data: null,
+						defaultContent: `<button class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>`,
+					}
+				],
+			});
+			var table_rejected = $('#tb_rejected').DataTable({
+				processing: true,
+				order: [
+					[5, 'desc']
+				],
+				ajax: {
+					'url': host + 'OTRequest/GetOTRequestRejectedGroup',
+					'type': 'GET',
+				},
+				columns: [{
+						data: 'roles'
+					},
+					{
+						data: null,
+						render: function(data, type, row) {
+							return `${row.ot_date}`;
 
-			// 			},
-			// 		},
-			// 		{
-			// 			data: null,
-			// 			render: function(data, type, row) {
-			// 				return `${row.ot_starttime} - ${row.ot_endtime}`;
+						},
+					},
+					{
+						data: null,
+						render: function(data, type, row) {
+							return `${row.ot_starttime} - ${row.ot_endtime}`;
 
-			// 			},
-			// 		},
-			// 		{
-			// 			data: "work_detail",
-			// 		},
-			// 		{
-			// 			data: "machine_name",
-			// 		},
-			// 		{
-			// 			data: "createdate",
-			// 		},
-			// 		{
-			// 			targets: -1,
-			// 			data: null,
-			// 			defaultContent: `<button class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>`,
-			// 		}
-			// 	],
-			// });
+						},
+					},
+					{
+						data: "work_detail",
+					},
+					{
+						data: "machine_name",
+					},
+					{
+						data: "createdate",
+					},
+					{
+						targets: -1,
+						data: null,
+						defaultContent: `<button class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>`,
+					}
+				],
+			});
 
 
 			// ปุ่มดูข้อมูล
@@ -514,7 +531,7 @@
 						// append to id=nav-wait
 						let html = '';
 						for (const [key, value] of Object.entries(data)) {
-							// console.log(`${key}: ${value}`);
+							console.log(`${key}: ${value}`);
 							var tb_emp_list = '';
 							value.Employee_List.forEach(element => {
 								// appedn to id=emp_list
@@ -525,11 +542,13 @@
 														<button class="btn btn-danger" onclick="RejectByID(${element.req_id})"><i class="fa-solid fa-circle-xmark"></i></button>
 													</div>
 												</div><hr>`;
-							});	
+							});
 							html += `<div class="row mt-5">
+										<div class="card">
+											<div class="card-body">
 												<div class="col">
 													<div class="row">
-														<div class="col-12 ps-5">
+														<div class="col-12 ps-4">
 															<b>
 																(${value.Sect}) - ${value.Detail}
 															</b>
@@ -537,42 +556,54 @@
 
 													</div>
 													<div class="row">
-														<div class="col px-5">
+														<div class="col px-4">
 															<div class="text-secondary fs-14">
 																ตั้งแต่ ${value.OT_Start}
 															</div>
 														</div>
 													</div>
 													<div class="row">
-														<div class="col px-5">
+														<div class="col px-4">
 															<div class="text-secondary fs-14">
 																ถึง ${value.OT_End}
 															</div>
 														</div>
 													</div>
 													<div class="row mt-3">
-														<div class="col">
-															<p class="d-inline-flex gap-1 ps-4">
-																<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse_${key}" role="button" aria-expanded="false" aria-controls="collapse_${key}">
-																	ดูรายชื่อผู้ขออนุมัติ
-																</a>
-															</p>
-															<div class="collapse" id="collapse_${key}">
-																<div class="card card-body">
+													<div class="accordion" id="accordionExample">
+														<div class="accordion-item">
+															<h2 class="accordion-header" id="headingOne">
+															<button
+																data-mdb-collapse-init
+																class="accordion-button collapsed"
+																type="button"
+																data-mdb-toggle="collapse"
+																data-mdb-target="#collapse${key}"
+																aria-expanded="false"
+																aria-controls="collapse${key}"
+															>
+															ดูรายชื่อผู้ขออนุมัติ
+															</button>
+															</h2>
+															<div id="collapse${key}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
+															<div class="accordion-body">
 																${tb_emp_list}
-																</div>
+															</div>
 															</div>
 														</div>
+														</div>
+										
 													</div>
 													<div class="row mt-3">
 														<div class="col px-5 text-end">
-															<button class="btn btn-success" onclick="ApprovedAllKey()">อนุมัติ</button>
-															<button class="btn btn-danger" onclick="RejectdAllKey()">ไม่อนุมัติ</button>
+															<button class="btn btn-success" onclick="ApprovedAllKey('${key}')">อนุมัติ</button>
+															<button class="btn btn-danger" onclick="RejectdAllKey('${key}')">ไม่อนุมัติ</button>
 														</div>
 													</div>
 												</div>
 											</div>
-											<hr>`
+										</div>
+									</div>`
 						}
 						$('#nav-wait').html(html)
 
@@ -607,21 +638,29 @@
 							data: data,
 							contentType: "contentType/json",
 							success: function(response) {
-								console.log(response)
+								// console.log(response)
 								if (response.result == "success") {
 									// remove row id =id
-									$(`#tb_info_body tr td button.btn-success`).each(function() {
+									$(`button.btn-success`).each(function() {
+										// console.log($(this).attr('onclick') )
 										if ($(this).attr('onclick') == `ApprovedByID(${id})`) {
-											$(this).parents('tr').remove()
+											//remove this el
+											$(this).parent().parent().next().remove()
+											console.log()
+											if ($(this).parent().parent().parent().children().length <= 2) {
+												// remove where  parent closet class card
+												// $(this).parentsUntil('div.row.mt-5')
+												// console.log($(this).parentsUntil('div.row.mt-5').parent()[0].remove())
+												$(this).parentsUntil('div.row.mt-5').parent()[0].remove()
+
+											} else {
+												$(this).parent().parent().remove()
+											}
 										}
 									})
-									// if empty body table close modal
-									if ($('#tb_info_body tr').length == 0) {
-										myModalInfo.hide()
-									}
+
 
 									// table reload
-									table_wait_approved.ajax.reload();
 									table_approved.ajax.reload();
 									table_rejected.ajax.reload();
 
@@ -660,18 +699,25 @@
 								console.log(response)
 								if (response.result == "success") {
 									// remove row id =id
-									$(`#tb_info_body tr td button.btn-danger`).each(function() {
-										if ($(this).attr('onclick') == `RejectByID(${id})`) {
-											$(this).parents('tr').remove()
+									$(`button.btn-success`).each(function() {
+										// console.log($(this).attr('onclick') )
+										if ($(this).attr('onclick') == `ApprovedByID(${id})`) {
+											//remove this el
+											// console.log($(this).parent().parent().next())
+											$(this).parent().parent().next().remove()
+											if ($(this).parent().parent().parent().children().length <= 2) {
+												// remove where  parent closet class card
+												// $(this).parentsUntil('div.row.mt-5')
+												// console.log($(this).parentsUntil('div.row.mt-5').parent()[0].remove())
+												$(this).parentsUntil('div.row.mt-5').parent()[0].remove()
+
+											} else {
+												$(this).parent().parent().remove()
+											}
+
 										}
 									})
-									// if empty body table close modal
-									if ($('#tb_info_body tr').length == 0) {
-										myModalInfo.hide()
-									}
 
-									// table reload
-									table_wait_approved.ajax.reload();
 									table_approved.ajax.reload();
 									table_rejected.ajax.reload();
 
@@ -688,7 +734,7 @@
 				})
 			}
 
-			function ApprovedAllKey() {
+			function ApprovedAllKey(key) {
 				// swal confirm
 				Swal.fire({
 					title: `ต้องการอนุมัติทั้งหมด?`,
@@ -701,7 +747,7 @@
 				}).then((result) => {
 					if (result.isConfirmed) {
 						let data = {
-							"request_key": $('#request_key').val()
+							"request_key": key
 						}
 						$.ajax(host + 'OTRequest/ApprovedAllKey', {
 							data: data,
@@ -709,17 +755,17 @@
 							success: function(response) {
 								console.log(response)
 								if (response.result == "success") {
-									// remove row id =id
-									$(`#tb_info_body tr`).each(function() {
-										$(this).remove()
-									})
-									// if empty body table close modal
-									if ($('#tb_info_body tr').length == 0) {
-										myModalInfo.hide()
-									}
+									$(`button.btn-success`).each(function() {
+										// console.log($(this).attr('onclick') )
+										if ($(this).attr('onclick') == `ApprovedAllKey('${key}')`) {
+											//remove this el
+											$(this).parent().parent().parent().parent().parent().parent().remove()
 
-									// table reload
-									table_wait_approved.ajax.reload();
+											// update $("#count_wait")
+											$("#count_wait").html(parseInt($("#count_wait").html()) - 1)
+
+										}
+									});
 									table_approved.ajax.reload();
 									table_rejected.ajax.reload();
 
@@ -736,7 +782,7 @@
 				})
 			}
 
-			function RejectdAllKey() {
+			function RejectdAllKey(key) {
 				// swal confirm
 				Swal.fire({
 					title: `ต้องการไม่อนุมัติทั้งหมด?`,
@@ -749,7 +795,7 @@
 				}).then((result) => {
 					if (result.isConfirmed) {
 						let data = {
-							"request_key": $('#request_key').val()
+							"request_key": key
 						}
 						$.ajax(host + 'OTRequest/RejectdAllKey', {
 							data: data,
@@ -757,17 +803,16 @@
 							success: function(response) {
 								console.log(response)
 								if (response.result == "success") {
-									// remove row id =id
-									$(`#tb_info_body tr`).each(function() {
-										$(this).remove()
-									})
-									// if empty body table close modal
-									if ($('#tb_info_body tr').length == 0) {
-										myModalInfo.hide()
-									}
 
-									// table reload
-									table_wait_approved.ajax.reload();
+									$(`button.btn-success`).each(function() {
+										// console.log($(this).attr('onclick') )
+										if ($(this).attr('onclick') == `ApprovedAllKey('${key}')`) {
+											$(this).parent().parent().parent().parent().parent().parent().remove()
+											$("#count_wait").html(parseInt($("#count_wait").html()) - 1)
+
+										}
+									})
+
 									table_approved.ajax.reload();
 									table_rejected.ajax.reload();
 

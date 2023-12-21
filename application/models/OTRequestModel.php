@@ -181,7 +181,7 @@ class OTRequestModel extends CI_Model
 		$sql = "SELECT tb_req.id, tb_req.`request_key`, tb_roles.roles, tb_req.ot_starttime, tb_req.ot_endtime, tb_req.ot_date, tb_req.ot_date_end, tb_req.work_detail, tb_req.machine_name, tb_req.createdate, tb_emp.employees_id, tb_emp.employees_name, tb_req.cars_text,tb_sect.sects FROM `tb_ot_request` as tb_req INNER JOIN `tb_employees` as tb_emp ON tb_req.employee_id = tb_emp.employees_id INNER JOIN `tb_roles` as tb_roles ON tb_req.roles_id = tb_roles.id INNER JOIN `tb_sect` as tb_sect ON tb_emp.employees_sect = tb_sect.id where `approved_status` = 0 and employees_sect in (1);";
 		$query = $this->db->query($sql);
 		$res = $query->result();
-		
+		$model = array();
 		foreach ($res as $key => $value) {
 			$model['Wait'][$value->request_key]['Sect'] = $value->sects;
 			$model['Wait'][$value->request_key]['Detail'] = $value->work_detail;

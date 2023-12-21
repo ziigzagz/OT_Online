@@ -17,6 +17,7 @@
 body {
 	font-family: "Kanit", sans-serif;
 	font-weight: bold;
+	background-color: lightblue;
 }
 
 .error {
